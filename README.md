@@ -12,14 +12,14 @@
 - [Documentation] (https://github.com/vrtigo/vrtigo-webvr)
 - Email - hello@vrtigo.io
 - [Bug reports] (https://github.com/vrtigo/vrtigo-webvr/issues)
-- Express lane: 140 characters or less [@vrtigoio] (https://twitter.com/vrtigoio) on twitter
+- Express: 140 characters or less [@vrtigoio] (https://twitter.com/vrtigoio) on twitter
 
 
 ##How to run and use
 
 Visit (vrtigo.io)[vrtigo.io] to create an account to view your dashboard.
-Use ```addUserID``` and ```addAppID``` to add the needed information to view the data.
-Use ```addEvent``` to add an event to be tracked.
+Use ```addUserID()``` and ```addAppID()``` to add the needed information to view the data.
+Use ```addEvent(event)``` to add an event to be tracked.
 
 In your Index.html file include an <a-entity> called vrtigo with nothing else attached. This will allow the FPS to be calculated.
 
