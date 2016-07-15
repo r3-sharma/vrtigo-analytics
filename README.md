@@ -2,17 +2,17 @@
 
 
 ####This plugin will allow you to capture the following pieces of data:
--Frames Per Second(fps)
--Pose Data (in Quaternion form)
--Session length
--Session Time stamp
--Battery Data (charging, levels, time left)
+- Frames Per Second(fps)
+- Pose Data (in Quaternion form)
+- Session length
+- Session Time stamp
+- Battery Data (charging, levels, time left)
 
 ##Help and Support
 - [Documentation] (https://github.com/vrtigo/vrtigo-webvr)
 - Email - hello@vrtigo.io
 - [Bug reports] (https://github.com/vrtigo/vrtigo-webvr/issues)
-- Express lane: 140 characters or less (@vrtigoio) [https://twitter.com/vrtigoio] on twitter
+- Express lane: 140 characters or less [@vrtigoio] (https://twitter.com/vrtigoio) on twitter
 
 
 ##How to run and use
