@@ -1,18 +1,36 @@
-# WebVR VideoPlayer
+# Aframe Analytics package
 
-This is an example WebVR video player using A-frame to play 360 degree videos.
 
-to run locally, modify ip address on line 53 of ```posting.js``` to send all data.
+####This plugin will allow you to capture the following pieces of data:
+-Frames Per Second(fps)
+-Pose Data (in Quaternion form)
+-Session length
+-Session Time stamp
+-Battery Data (charging, levels, time left)
 
-use cmd prompt ```npm start```
+##Help and Support
+- [Documentation] (https://github.com/vrtigo/vrtigo-webvr)
+- Email - hello@vrtigo.io
+- [Bug reports] (https://github.com/vrtigo/vrtigo-webvr/issues)
+- Express lane: 140 characters or less (@vrtigoio) [https://twitter.com/vrtigoio] on twitter
 
-Close the browser window that opens up immediately if you want to test on an android device
 
-then visit the local address of the site on the android device, in a chrome browser.
+##How to run and use
 
-You can use [chrome debugging tools](https://developer.chrome.com/devtools/docs/remote-debugging) to view the console:
+Visit (vrtigo.io)[vrtigo.io] to create an account to view your dashboard.
+Use ```addUserID``` and ```addAppID``` to add the needed information to view the data.
+Use ```addEvent``` to add an event to be tracked.
 
-##Functions to run
-```addUserID``` and `\
-pass in UserID and AppID using ```addUserID``` and ```addAppID``` respectively. These must be called
-Call addEvent to add a custom event.
+In your Index.html file include an <a-entity> called vrtigo with nothing else attached. This will allow the FPS to be calculated.
+
+For example:
+
+```
+<a-scene>
+  <a-videosphere src="#vid" rotation="0 180 0"></a-videosphere>
+  <a-entity vrtigo></a-entity>
+</a-scene>
+```
+
+##How was this created?
+The VRTIGO analytics plugin was created mostly using WebVR and WebGL calls. The only A-Frame specific data is frames per second. In the near future we will also be creating a generic WebVR version of this plugin for those of you not using A-frame.

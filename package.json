@@ -1,25 +1,36 @@
 {
   "name": "vrtigo-analytics",
   "description": "Analytics plugin for WebVR and Javascript Scenes",
-  "version": "0.1.0",
+  "version": "0.3.0",
+  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "npm run serve & budo --host 0.0.0.0 --live --verbose --port 3000 --open",
     "deploy": "ghpages",
     "ghpages": "ghpages",
-    "serve": "node_modules/.bin/echo-server 5000"
+    "serve": "node_modules/.bin/echo-server 5000",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
     "budo": "^7.0.0",
     "ghpages": "0.0.3",
     "moment": "2.14.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vrtigo/webvr_package.git"
+  },
   "keywords": [
     "aframe",
-    "aframe-example",
-    "aframe-scene",
-    "aframe-boilerplate"
+    "aframe-boilerplate",
+    "test"
   ],
+  "author": "Eswar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vrtigo/webvr_package/issues"
+  },
+  "homepage": "https://github.com/vrtigo/webvr_package",
   "dependencies": {
     "aframe": "0.2.0",
     "echo-server3": "git+https://github.com/erikriverson/node-echo-server.git",
