@@ -12,6 +12,42 @@ var quat2;
 var quat3;
 var quat4;
 var sid = uuid.v1();
+var startTime = 0; //for fps counter
+var frameNumber = 0; //for fps counter
+var fpsStorage = [];
+
+var fps = {
+  startTime : 0,
+  frameNumber : 0,
+  getFPS : function(){
+    this.frameNumber++;
+    var d = new Date().getTime(),
+    currentTime = ( d - this.startTime ) / 1000,
+    result = Math.floor( ( this.frameNumber / currentTime ) );
+  	if( currentTime > 1 ){
+      this.startTime = new Date().getTime();
+      this.frameNumber = 0;		}
+    console.log ("fps = " + result);
+    }
+};
+
+
+AFRAME.registerComponent('vrtigo',{
+  schema: { default: true },
+
+  tick: function(){
+
+    frameNumber++;
+    var c = new Date().getTime(),
+    currentTime = ( c - startTime ) / 1000,
+    result = Math.floor( ( frameNumber / currentTime ) );
+  	if( currentTime > 1 ){
+      startTime = new Date().getTime();
+      frameNumber = 0;		}
+    fpsStorage.push(result);
+  }
+});
+
 
 //var parse = new UAParser();
 //var result = parse.getResult();
