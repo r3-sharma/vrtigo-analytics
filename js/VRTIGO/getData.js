@@ -2,45 +2,16 @@ var gl = require('gl-matrix');
 var af = require('aframe');
 var uu = require('uuid');
 var jstz = require('jstz');
+var config = require('configurations')
 var vrDisplay = null;
 var display;
 var matrx = gl.mat4.create();
 var storeData = [];
 var battery;
 var ua = navigator.userAgent
-var user_id = "user@oculus.com";
-var app_id = "0c680a1e-8a32-46d5-ab22-087d6ea8d1cf";
-var quat1;
-var quat2;
-var quat3;
-var quat4;
 var sid = uu.v1();
-var startTime = 0; //for fps counter
-var frameNumber = 0; //for fps counter
-var fpsStorage = [];
 var pose_frequency = 200;
 var battery_frequency = 1000;
-var is_Sampling = false;
-var animate;
-var pose_d;
-var batt;
-var send;
-
-AFRAME.registerComponent('vrtigo',{
-  schema: { default: true },
-
-  tick: function(){
-
-    frameNumber++;
-    var c = new Date().getTime(),
-    currentTime = ( c - startTime ) / 1000,
-    result = Math.floor( ( frameNumber / currentTime ) );
-  	if( currentTime > 1 ){
-      startTime = new Date().getTime();
-      frameNumber = 0;		}
-    fpsStorage.push(result);
-  }
-});
 
 
 //var parse = new UAParser();
@@ -51,26 +22,8 @@ function generateTs(){
   return d.getTime();
 };
 
-//user inserts their user id
-function addUserID(userid){
-   user_id = userid
-};
-
-//user passes their app id
-function addAppID(appid){
-  app_id = appid
-};
-
-function setPoseFrequency(frequency) {
-  pose_frequency = frequency;
-};
-
-
-function setBatteryFrequency(frequency) {
-  battery_frequency = frequency;
-};
-
 var startTs = generateTs()
+
 
 
 // sets a vrDisplay to be used for data
@@ -110,17 +63,6 @@ function onAnimationFrame () {
 //    every: 10   // update every 10 frames
 //});
 
-function generateTz(){
-  var tz = jstz.determine();
-  return tz.name();
-};
-
-function generateSTS(){
-  var currentTs = generateTs();
-  var sts = currentTs - startTs;
-  return currentTs - startTs;
-}
-
 function pushData(type, metric, value){
   payload = {};
   payload.type = type;
@@ -136,10 +78,6 @@ function pushData(type, metric, value){
   //console.log(payload)
   storeData.push(payload);
 };
-
-function overheat(){
-  pushData("event", "event", "overheat")
-}
 
 function addEvent(event){
   pushData("event", "event", event)
@@ -169,65 +107,28 @@ function pose_data () {
 
     pushData("device", "displayid", vrDisplay.displayId);
     pushData("device", "DisplayName", vrDisplay.displayName);
-    pushData("event", "Headset is on", vrDisplay.isPresenting)
-    pushData("event", "Quaternion1", quat1);
-    pushData("pose", "Quaternion2", quat2);
-    pushData("pose", "Quaternion3", quat3);
-    pushData("pose", "Quaternion4", quat4);
+    pushData("event", "Headset is on", vrDisplay.isPresenting);
+    pushData("pose", "quaternion", matrx);
 
   } else {
     console.log("Unable to access data on your machine.")
   };
 };
 
-function setSampler (bool) {
-  if (is_Sampling) {
-    if (bool) {
-      continue;
-
-    } else {
-      is_Sampling = false
-      clearInterval(animate);
-      clearInterval(send);
-      clearInterval(pose_d);
-      clearInterval(batt);
-    }
-  } else {
-    if (bool) {
-      is_Sampling = true
-      animate = setInterval(onAnimationFrame, pose_frequency);
-      send = setInterval(sendData, 1000);
-      pose_d = setInterval(pose_data, pose_frequency)
-      batt = setInterval(battery_data, battery_frequency)
-
-    } else {
-      continue;
-
-    }
-  }
-
-};
 //setInterval(overheat, 5000)
 
-function sendData() {
-
-  fetch("http://a.vrtigo.io/update", {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        data: storeData,
-        session: []
-    })
-  });
-  var backupData = storeData.slice();
-  storeData = [];
+function render_data () {
+  pushData("render", "fps", config.fpsStorage);
+  config.fpsStorage = [];
 }
 
 module.exports = {
   addUserID: addUserID,
   addAppID: addAppID,
-  addEvent: addEvent
+  addEvent: addEvent,
+  storeData: storeData,
+  pose_data: pose_data,
+  battery_data: battery_data,
+  onAnimationFrame: onAnimationFrame
+  render_data: render_data
 };
