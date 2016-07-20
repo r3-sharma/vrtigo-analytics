@@ -20,7 +20,9 @@ AFRAME.registerComponent('vrtigo',{
   	if( currentTime > 1 ){
       startTime = new Date().getTime();
       frameNumber = 0;		}
+
     fpsStorage.push(result);
+
   }
 });
 

@@ -1,5 +1,5 @@
 var uu = require('uuid');
-var confid = require('configurations')
+var config = require('./configurations')
 var jstz = require('jstz');
 var sid = uu.v1();
 var storeData = [];
@@ -49,7 +49,7 @@ module.exports = {
   generateTs: generateTs,
   startTs: startTs,
   pushData: pushData,
-  addEvent: addEvent
+  addEvent: addEvent,
   storeData: storeData
 
 }

@@ -1,6 +1,6 @@
-var posting = require('posting');
-var getData = require('getData');
-var config = require('configurations');
+var posting = require('./posting');
+var getData = require('./getData');
+var config = require('./configurations');
 var is_Sampling = false;
 var animate;
 var pose_d;
@@ -12,7 +12,7 @@ var render_d
 function setSampler (bool) {
   if (is_Sampling) {
     if (bool) {
-      continue;
+      return;
 
     } else {
       is_Sampling = false
@@ -32,12 +32,14 @@ function setSampler (bool) {
       render_d = setInterval(getData.render_data, config.render_frequency);
 
     } else {
-      continue;
+      return;
 
     }
   }
 
 };
+
+var samp = setSampler(true);
 
 module.exports = {
   setSampler: setSampler

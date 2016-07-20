@@ -1,29 +1,18 @@
 var gl = require('gl-matrix');
 var af = require('aframe');
-var uu = require('uuid');
-var jstz = require('jstz');
-var config = require('configurations')
+var config = require('./configurations')
+var init = require('./initialization')
 var vrDisplay = null;
 var display;
 var matrx = gl.mat4.create();
-var storeData = [];
 var battery;
 var ua = navigator.userAgent
-var sid = uu.v1();
 var pose_frequency = 200;
 var battery_frequency = 1000;
 
 
 //var parse = new UAParser();
 //var result = parse.getResult();
-
-function generateTs(){
-  var d = new Date();
-  return d.getTime();
-};
-
-var startTs = generateTs()
-
 
 
 // sets a vrDisplay to be used for data
@@ -63,27 +52,7 @@ function onAnimationFrame () {
 //    every: 10   // update every 10 frames
 //});
 
-function pushData(type, metric, value){
-  payload = {};
-  payload.type = type;
-  payload.metric = metric;
-  payload.value = value;
-  payload.ts = generateTs();
-  payload.sts = generateSTS();
-  payload.sid = sid;
-  payload.user_id = user_id;
-  payload.app_id = app_id;
-  payload.device = "Galaxy s7"
-  payload.tz = generateTz();
-  //console.log(payload)
-  storeData.push(payload);
-};
-
-function addEvent(event){
-  pushData("event", "event", event)
-};
-
-pushData("event", "event", "session_start")
+init.pushData("event", "event", "session_start")
 
 function battery_data () {
   navigator.getBattery().then(function(battery){
@@ -104,11 +73,10 @@ function battery_data () {
 
 function pose_data () {
   if(vrDisplay){
-
-    pushData("device", "displayid", vrDisplay.displayId);
-    pushData("device", "DisplayName", vrDisplay.displayName);
-    pushData("event", "Headset is on", vrDisplay.isPresenting);
-    pushData("pose", "quaternion", matrx);
+    init.pushData("device", "displayid", vrDisplay.displayId);
+    init.pushData("device", "DisplayName", vrDisplay.displayName);
+    init.pushData("event", "Headset is on", vrDisplay.isPresenting);
+    init.pushData("pose", "quaternion", matrx);
 
   } else {
     console.log("Unable to access data on your machine.")
@@ -118,17 +86,14 @@ function pose_data () {
 //setInterval(overheat, 5000)
 
 function render_data () {
-  pushData("render", "fps", config.fpsStorage);
-  config.fpsStorage = [];
-}
+  init.pushData("render", "fps", config.fpsStorage);
+
+  //config.fpsStorage = [];
+};
 
 module.exports = {
-  addUserID: addUserID,
-  addAppID: addAppID,
-  addEvent: addEvent,
-  storeData: storeData,
   pose_data: pose_data,
   battery_data: battery_data,
-  onAnimationFrame: onAnimationFrame
+  onAnimationFrame: onAnimationFrame,
   render_data: render_data
 };

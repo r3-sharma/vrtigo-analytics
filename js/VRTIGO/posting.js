@@ -1,5 +1,5 @@
-var getData = require('getData')
-var init = require('initialization')
+var getData = require('./getData')
+var init = require('./initialization')
 
 function sendData() {
 
