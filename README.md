@@ -18,6 +18,8 @@
 ##How to run and use
 
 Visit [vrtigo.io](https://vrtigo.io) to create an account to view your dashboard.
+
+
 Use ```addUserID()``` and ```addAppID()``` to add the needed information to view the data.
 Use ```addEvent(event)``` to add an event to be tracked.
 

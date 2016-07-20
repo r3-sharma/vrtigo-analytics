@@ -1,7 +1,10 @@
-
+var gl = require('gl-matrix');
+var af = require('aframe');
+var uu = require('uuid');
+var jstz = require('jstz');
 var vrDisplay = null;
 var display;
-var matrx = mat4.create();
+var matrx = gl.mat4.create();
 var storeData = [];
 var battery;
 var ua = navigator.userAgent
@@ -11,26 +14,17 @@ var quat1;
 var quat2;
 var quat3;
 var quat4;
-var sid = uuid.v1();
+var sid = uu.v1();
 var startTime = 0; //for fps counter
 var frameNumber = 0; //for fps counter
 var fpsStorage = [];
-
-var fps = {
-  startTime : 0,
-  frameNumber : 0,
-  getFPS : function(){
-    this.frameNumber++;
-    var d = new Date().getTime(),
-    currentTime = ( d - this.startTime ) / 1000,
-    result = Math.floor( ( this.frameNumber / currentTime ) );
-  	if( currentTime > 1 ){
-      this.startTime = new Date().getTime();
-      this.frameNumber = 0;		}
-    console.log ("fps = " + result);
-    }
-};
-
+var pose_frequency = 200;
+var battery_frequency = 1000;
+var is_Sampling = false;
+var animate;
+var pose_d;
+var batt;
+var send;
 
 AFRAME.registerComponent('vrtigo',{
   schema: { default: true },
@@ -59,12 +53,21 @@ function generateTs(){
 
 //user inserts their user id
 function addUserID(userid){
-  var user_id = userid
+   user_id = userid
 };
 
 //user passes their app id
 function addAppID(appid){
-  var app_id = appid
+  app_id = appid
+};
+
+function setPoseFrequency(frequency) {
+  pose_frequency = frequency;
+};
+
+
+function setBatteryFrequency(frequency) {
+  battery_frequency = frequency;
 };
 
 var startTs = generateTs()
@@ -83,7 +86,6 @@ if (navigator.getVRDisplays) {
   });
 }
 
-
 // each second this updates the information (orientation, pose, etc)
 function onAnimationFrame () {
   if (vrDisplay) {
@@ -95,17 +97,12 @@ function onAnimationFrame () {
     var angularVelocity = pose.angularVelocity;
     if (!orientation) { orientation = [0, 0, 0, 1]; }
     if (!position) { position = [0, 0, 0]; }
-    var viewMat = mat4.create();
-    mat4.fromRotationTranslation(matrx, orientation, position);
-    //var euler = new THREE.Euler().setFromRotationMatrix( orientation );
-    quat1 = JSON.stringify(matrx[0]);
-    quat2 = JSON.stringify(matrx[1]);
-    quat3 = JSON.stringify(matrx[2]);
-    quat4 = JSON.stringify(matrx[3]);
-    //var rotation = new THREE.Euler().setFromQuaternion( matrx );
+    var viewMat = gl.mat4.create();
+    gl.mat4.fromRotationTranslation(matrx, orientation, position);
+    //the matrix might need to be inverted since this describes camera orientation. something about local vs world orientation. not sure about that. (mat4.invert(matrx, matrx)) should work
   } else {
     console.log("No VR devices attached")
-    //mat4.identity(viewMat);
+    //gl.mat4.identity(viewMat);
   }
 }
 
@@ -131,7 +128,7 @@ function pushData(type, metric, value){
   payload.value = value;
   payload.ts = generateTs();
   payload.sts = generateSTS();
-  payload.sid = uuid.v1();
+  payload.sid = sid;
   payload.user_id = user_id;
   payload.app_id = app_id;
   payload.device = "Galaxy s7"
@@ -150,17 +147,7 @@ function addEvent(event){
 
 pushData("event", "event", "session_start")
 
-// this function adds data to array and prints it
-function printer (){
-  //console.log("displayid = " + vrDisplay.displayId);
-  //console.log(displayID);
-  //console.log("DisplayName = " + vrDisplay.displayName);
-  //console.log("Headset is on = " + vrDisplay.isPresenting);
-  //console.log("fps = " + ticker.rate)
-  //console.log("browser = " + JSON.stringify(result.browser));
-  //console.log("os = " + JSON.stringify(result.os));
-  //console.log("device = " + JSON.stringify(result.device));
-  addEvent("tester");
+function battery_data () {
   navigator.getBattery().then(function(battery){
       battery.addEventListener('chargingchange', function(){
         pushData("hardware", 'charging =', battery.charging)
@@ -175,6 +162,9 @@ function printer (){
         pushData("hardware","battery discharging time = ", battery.dischargingTime);
       }*/
   });
+};
+
+function pose_data () {
   if(vrDisplay){
 
     pushData("device", "displayid", vrDisplay.displayId);
@@ -188,14 +178,36 @@ function printer (){
   } else {
     console.log("Unable to access data on your machine.")
   };
+};
 
-}
+function setSampler (bool) {
+  if (is_Sampling) {
+    if (bool) {
+      continue;
 
-setInterval(onAnimationFrame, 4000);
-setInterval(printer, 4000);
-setInterval(sendData, 4000);
+    } else {
+      is_Sampling = false
+      clearInterval(animate);
+      clearInterval(send);
+      clearInterval(pose_d);
+      clearInterval(batt);
+    }
+  } else {
+    if (bool) {
+      is_Sampling = true
+      animate = setInterval(onAnimationFrame, pose_frequency);
+      send = setInterval(sendData, 1000);
+      pose_d = setInterval(pose_data, pose_frequency)
+      batt = setInterval(battery_data, battery_frequency)
+
+    } else {
+      continue;
+
+    }
+  }
+
+};
 //setInterval(overheat, 5000)
-
 
 function sendData() {
 
