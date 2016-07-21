@@ -3,7 +3,7 @@ var getData = require('./getData')
 
 function sendData() {
 
-  fetch("http://a.vrtigo.io/update", {
+  fetch("https://a.vrtigo.io/update", {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
