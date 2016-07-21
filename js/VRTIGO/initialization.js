@@ -2,7 +2,7 @@ var uu = require('uuid');
 var config = require('./configurations')
 var jstz = require('jstz');
 var sid = uu.v1();
-var storeData = [];
+
 
 
 function generateTs(){
@@ -25,7 +25,7 @@ function generateSTS(){
 }
 
 
-function pushData(type, metric, value){
+function generatePayload(type, metric, value){
   payload = {};
   payload.type = type;
   payload.metric = metric;
@@ -37,19 +37,13 @@ function pushData(type, metric, value){
   payload.app_id = config.app_id;
   payload.device = "Galaxy s7"
   payload.tz = generateTz();
+  return payload;
   //console.log(payload)
-  storeData.push(payload);
-};
-
-function addEvent(event){
-  pushData("event", "event", event)
 };
 
 module.exports = {
   generateTs: generateTs,
   startTs: startTs,
-  pushData: pushData,
-  addEvent: addEvent,
-  storeData: storeData
+  generatePayload: generatePayload
 
 }

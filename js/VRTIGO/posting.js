@@ -1,5 +1,5 @@
 var getData = require('./getData')
-var init = require('./initialization')
+
 
 function sendData() {
 
@@ -10,12 +10,12 @@ function sendData() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-        data: init.storeData,
+        data: getData.storeData,
         session: []
     })
   });
-  var backupData = init.storeData.slice();
-  init.storeData = [];
+  var backupData = getData.storeData.slice();
+  getData.storeData = [];
 }
 
 module.exports = {

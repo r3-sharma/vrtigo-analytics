@@ -9,11 +9,21 @@ var battery;
 var ua = navigator.userAgent
 var pose_frequency = 200;
 var battery_frequency = 1000;
-
+var storeData = [];
 
 //var parse = new UAParser();
 //var result = parse.getResult();
 
+
+function addEvent(event){
+  var payload = init.generatePayload("event", "event", event);
+  storeData.push(payload)
+};
+
+function pushData(type, metric, value) {
+  var load = init.generatePayload(type, metric, value);
+  storeData.push(load);
+};
 
 // sets a vrDisplay to be used for data
 if (navigator.getVRDisplays) {
@@ -52,7 +62,7 @@ function onAnimationFrame () {
 //    every: 10   // update every 10 frames
 //});
 
-init.pushData("event", "event", "session_start")
+pushData("event", "event", "session_start")
 
 function battery_data () {
   navigator.getBattery().then(function(battery){
@@ -73,10 +83,10 @@ function battery_data () {
 
 function pose_data () {
   if(vrDisplay){
-    init.pushData("device", "displayid", vrDisplay.displayId);
-    init.pushData("device", "DisplayName", vrDisplay.displayName);
-    init.pushData("event", "Headset is on", vrDisplay.isPresenting);
-    init.pushData("pose", "quaternion", matrx);
+    pushData("device", "displayid", vrDisplay.displayId);
+    pushData("device", "DisplayName", vrDisplay.displayName);
+    pushData("event", "Headset is on", vrDisplay.isPresenting);
+    pushData("pose", "quaternion", matrx);
 
   } else {
     console.log("Unable to access data on your machine.")
@@ -86,14 +96,17 @@ function pose_data () {
 //setInterval(overheat, 5000)
 
 function render_data () {
-  init.pushData("render", "fps", config.fpsStorage);
-
-  //config.fpsStorage = [];
+  pushData("render", "fps", config.fpsStorage);
+  console.log(config.fpsStorage);
+  config.fpsStorage = [];
 };
 
 module.exports = {
   pose_data: pose_data,
   battery_data: battery_data,
   onAnimationFrame: onAnimationFrame,
-  render_data: render_data
+  render_data: render_data,
+  storeData: storeData,
+  addEvent: addEvent,
+  pushData: pushData
 };

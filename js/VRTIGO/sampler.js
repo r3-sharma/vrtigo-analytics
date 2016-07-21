@@ -26,10 +26,10 @@ function setSampler (bool) {
     if (bool) {
       is_Sampling = true
       animate = setInterval(getData.onAnimationFrame, config.pose_frequency);
-      send = setInterval(posting.sendData, 1000);
       pose_d = setInterval(getData.pose_data, config.pose_frequency);
       batt = setInterval(getData.battery_data, config.battery_frequency);
       render_d = setInterval(getData.render_data, config.render_frequency);
+      send = setInterval(posting.sendData, 1000);
 
     } else {
       return;

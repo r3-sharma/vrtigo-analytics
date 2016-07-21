@@ -51,8 +51,8 @@ function setRenderFrequency (frequency) {
 
 module.exports = {
   fpsStorage: fpsStorage,
-  app_id: app_id,
-  user_id: user_id,
+  addAppID: addAppID,
+  addUserID: addUserID,
   pose_frequency: pose_frequency,
   battery_frequency: battery_frequency
 }
