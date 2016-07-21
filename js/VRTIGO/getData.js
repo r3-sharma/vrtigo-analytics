@@ -32,7 +32,7 @@ if (navigator.getVRDisplays) {
       vrDisplay = displays[0];
       console.log("vr device found")
     } else {
-      console.log("WebVR supported but no VRDisplays found.");
+      //console.log("WebVR supported but no VRDisplays found.");
 
     }
   });
@@ -53,7 +53,7 @@ function onAnimationFrame () {
     gl.mat4.fromRotationTranslation(matrx, orientation, position);
     //the matrix might need to be inverted since this describes camera orientation. something about local vs world orientation. not sure about that. (mat4.invert(matrx, matrx)) should work
   } else {
-    console.log("No VR devices attached")
+    //console.log("No VR devices attached")
     //gl.mat4.identity(viewMat);
   }
 }
@@ -89,7 +89,7 @@ function pose_data () {
     pushData("pose", "quaternion", matrx);
 
   } else {
-    console.log("Unable to access data on your machine.")
+    //console.log("Unable to access data on your machine.")
   };
 };
 

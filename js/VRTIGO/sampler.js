@@ -11,8 +11,8 @@ var render_d
 
 function render_data () {
   //getData.pushData("render", "fps", fpsStorage);
-  console.log(config.fpsStorage);
-  config.fpsStorage = []
+  //console.log(config.fpsStorage);
+  //config.fpsStorage = []
 };
 
 
