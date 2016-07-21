@@ -9,6 +9,14 @@ var send_d;
 var render_d
 
 
+function render_data () {
+  //getData.pushData("render", "fps", fpsStorage);
+  console.log(config.fpsStorage);
+  config.fpsStorage = []
+};
+
+
+
 function setSampler (bool) {
   if (is_Sampling) {
     if (bool) {
@@ -28,7 +36,7 @@ function setSampler (bool) {
       animate = setInterval(getData.onAnimationFrame, config.pose_frequency);
       pose_d = setInterval(getData.pose_data, config.pose_frequency);
       batt = setInterval(getData.battery_data, config.battery_frequency);
-      render_d = setInterval(getData.render_data, config.render_frequency);
+      render_d = setInterval(render_data, config.render_frequency);
       send = setInterval(posting.sendData, 1000);
 
     } else {

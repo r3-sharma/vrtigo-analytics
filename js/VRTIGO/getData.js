@@ -95,17 +95,11 @@ function pose_data () {
 
 //setInterval(overheat, 5000)
 
-function render_data () {
-  pushData("render", "fps", config.fpsStorage);
-  console.log(config.fpsStorage);
-  config.fpsStorage = [];
-};
 
 module.exports = {
   pose_data: pose_data,
   battery_data: battery_data,
   onAnimationFrame: onAnimationFrame,
-  render_data: render_data,
   storeData: storeData,
   addEvent: addEvent,
   pushData: pushData
