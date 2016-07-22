@@ -1,28 +1,29 @@
 var gl = require('gl-matrix');
 var af = require('aframe');
-var config = require('./configurations')
-var init = require('./initialization')
+var config = require('./configurations');
+var init = require('./initialization');
 var vrDisplay = null;
 var display;
 var matrx = gl.mat4.create();
 var battery;
-var ua = navigator.userAgent
+var ua = navigator.userAgent;
 var pose_frequency = 200;
 var battery_frequency = 1000;
-var storeData = [];
+var storeData = {data: []};
 
 //var parse = new UAParser();
 //var result = parse.getResult();
 
-
 function addEvent(event){
   var payload = init.generatePayload("event", "event", event);
-  storeData.push(payload)
+  storeData.data.push(payload);
 };
 
 function pushData(type, metric, value) {
   var load = init.generatePayload(type, metric, value);
-  storeData.push(load);
+  storeData.data.push(load);
+  console.log('storeData now:');
+  console.log(storeData);
 };
 
 // sets a vrDisplay to be used for data
@@ -30,10 +31,9 @@ if (navigator.getVRDisplays) {
   navigator.getVRDisplays().then(function (displays){
     if (displays.length > 0 && displays[0] != undefined ){
       vrDisplay = displays[0];
-      console.log("vr device found")
+      console.log("vr device found");
     } else {
       //console.log("WebVR supported but no VRDisplays found.");
-
     }
   });
 }
@@ -62,17 +62,17 @@ function onAnimationFrame () {
 //    every: 10   // update every 10 frames
 //});
 
-pushData("event", "event", "session_start")
+pushData("event", "event", "session_start");
 
 function battery_data () {
   navigator.getBattery().then(function(battery){
       battery.addEventListener('chargingchange', function(){
-        pushData("hardware", 'charging =', battery.charging)
-      })
+        pushData("hardware", 'charging =', battery.charging);
+      });
       battery.addEventListener('levelchange', function(){
-        var batteryLevel = battery.level*100 + "%"
+        var batteryLevel = battery.level*100 + "%";
         pushData("hardware", "battery level", batteryLevel);
-      })
+      });
       /*if (battery.charging){
           pushData("hardware", "battery charging time = ", battery.chargingTime);
       } else {
@@ -100,7 +100,7 @@ module.exports = {
   pose_data: pose_data,
   battery_data: battery_data,
   onAnimationFrame: onAnimationFrame,
-  storeData: storeData,
   addEvent: addEvent,
+  storeData: storeData,
   pushData: pushData
 };
