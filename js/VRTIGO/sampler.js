@@ -31,8 +31,8 @@ AFRAME.registerComponent('vrtigo',{
 
 function render_data () {
   getData.pushData("render", "fps", fpsStorage);
-  console.log(fpsStorage);
   fpsStorage = [];
+  console.log(JSON.stringify(config.storeData))
 
 };
 

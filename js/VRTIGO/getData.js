@@ -83,11 +83,11 @@ function battery_data () {
 
 function pose_data () {
   if(vrDisplay){
-    pushData("device", "displayid", vrDisplay.displayId);
-    pushData("device", "DisplayName", vrDisplay.displayName);
+    pushData("event", "displayid", vrDisplay.displayId);
+    pushData("event", "DisplayName", vrDisplay.displayName);
     pushData("event", "Headset is on", vrDisplay.isPresenting);
     pushData("pose", "quaternion", matrx);
-
+    console.log(JSON.stringify(storeData))
   } else {
     //console.log("Unable to access data on your machine.")
   };

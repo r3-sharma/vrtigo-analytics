@@ -2,6 +2,7 @@ var uu = require('uuid');
 var config = require('./configurations')
 var jstz = require('jstz');
 var sid = uu.v1();
+var time;
 
 
 
@@ -23,7 +24,11 @@ function generateSTS(){
   var sts = currentTs - startTs;
   return currentTs - startTs;
 }
-
+function fif () {
+  time = generateSTS()
+  console.log(time)
+};
+setInterval (fif ,1000)
 
 function generatePayload(type, metric, value){
   payload = {};
