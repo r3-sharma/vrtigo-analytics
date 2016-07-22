@@ -29,14 +29,11 @@ AFRAME.registerComponent('vrtigo',{
 });
 
 
-function render_data () {
+function render_data (pushData) {
   getData.pushData("render", "fps", fpsStorage);
-  console.log(fpsStorage);
+  //console.log(fpsStorage);
   fpsStorage = [];
-
 };
-
-
 
 function setSampler (bool) {
   if (is_Sampling) {
@@ -58,7 +55,16 @@ function setSampler (bool) {
       pose_d = setInterval(getData.pose_data, config.pose_frequency);
       batt_d = setInterval(getData.battery_data, config.battery_frequency);
       render_d = setInterval(render_data, config.render_frequency);
-      send_d = setInterval(posting.sendData, 1000);
+      send_d = setInterval(function() {
+//        console.log(getData);
+//        let copy = getData.storeData.slice();
+//        console.log('copy is:');
+        //        console.log(copy);
+        console.log('sending:');
+        console.log(getData.storeData.data.slice());
+        posting.sendData(getData.storeData.data.slice());
+        getData.storeData.data = [];
+      }, 5000);
 
     } else {
       return;
@@ -72,5 +78,4 @@ var samp = setSampler(true);
 
 module.exports = {
   setSampler: setSampler
-
 };

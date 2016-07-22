@@ -1,7 +1,6 @@
-var getData = require('./getData')
+var getData = require('./getData');
 
-
-function sendData() {
+function sendData(data) {
 
   fetch("https://a.vrtigo.io/update", {
     method: 'POST',
@@ -10,14 +9,12 @@ function sendData() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-        data: getData.storeData,
+        data: data,
         session: []
     })
   });
-  var backupData = getData.storeData.slice();
-  getData.storeData = [];
 }
 
 module.exports = {
   sendData: sendData
-}
+};
