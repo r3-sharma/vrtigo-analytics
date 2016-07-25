@@ -20,7 +20,7 @@ Visit [vrtigo.io](https://vrtigo.io) to create an account to view your dashboard
 
 After installing through npm, you will need to incorporate the following line into the "main"(from your package.json) of your file.
 
-```import {addUserID,``` addAppID, addEvent, setPoseFrequency, setRenderFrequency, setBatteryFrequency} from 'vrtigo-analytics'```
+```import {addUserID, addAppID, addEvent, setPoseFrequency, setRenderFrequency, setBatteryFrequency} from 'vrtigo-analytics'```
 
 Use `addUserID()` and `addAppID()` to add the needed information to view the data.
 Use `addEvent(event)` to add an event to be tracked.
