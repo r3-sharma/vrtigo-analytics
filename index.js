@@ -8,12 +8,12 @@ var config = require('./js/VRTIGO/configurations.js')
 var getData = require('./js/VRTIGO/getData.js')
 
 module.exports = {
-
+  setSampler: sample.setSampler,
   getData: getData,
   wglu: wglu,
   aframe: aframe,
-  addUserID: config.addUserID,
-  addAppID: config.addAppID,
+  addUserId: config.addUserId,
+  setAppID: config.setAppId,
   setPoseFrequency: config.setPoseFrequency,
   setBatteryFrequency: config.setBatteryFrequency,
   setRenderFrequency: config.setRenderFrequency,

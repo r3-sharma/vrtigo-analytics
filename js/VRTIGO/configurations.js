@@ -6,12 +6,12 @@ var render_frequency = 1000;
 
 
 //user inserts their user id
-function addUserID(userid){
+function addUserId(userid){
   user_id = userid;
 };
 
 //user passes their app id
-function addAppID(appid){
+function setAppId(appid){
   app_id = appid;
 };
 
@@ -31,8 +31,8 @@ function setRenderFrequency (frequency) {
 module.exports = {
   user_id: user_id,
   app_id: app_id,
-  addAppID: addAppID,
-  addUserID: addUserID,
+  setAppId: setAppId,
+  addUserId: addUserId,
   pose_frequency: pose_frequency,
   render_frequency:render_frequency,
   battery_frequency: battery_frequency,
