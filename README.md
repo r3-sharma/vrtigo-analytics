@@ -25,13 +25,10 @@ After installing through npm, you will need to incorporate the following line in
 Use `addUserID()` and `addAppID()` to add the needed information to view the data.
 Use `addEvent(event)` to add an event to be tracked.
 
-<<<<<<< HEAD
 Use ```setPoseFrequency, setRenderFrequency, setBatteryFrequency``` to set the frequencies for collecting data. These are defaulted to 200, 1000, and 1000 respectively.
 
 In your Index.html file include an <a-entity> called vrtigo with nothing else attached. This will allow the FPS to be calculated.
-=======
-In your Index.html file include an `<a-entity>` called vrtigo with nothing else attached. This will allow the FPS to be calculated.
->>>>>>> 19724aac678c331972e14722065f60cb5dc2488b
+
 
 For example:
 
