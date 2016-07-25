@@ -1,14 +1,13 @@
-# Aframe Analytics package
+# Vrtigo A-Frame analytics package
 
-
-####This plugin will allow you to capture the following pieces of data:
-- Frames Per Second(fps)
-- Pose Data (in Quaternion form)
+This plugin will allow you to capture the following data:
+- Frames Per Second (fps)
+- Head pose (in Quaternion form)
 - Session length
-- Session Time stamp
-- Battery Data (charging, levels, time left)
+- Session time stamp
+- Battery (charging, levels, time left)
 
-##Help and Support
+## Help and Support
 - [Documentation](https://github.com/vrtigo/vrtigo-webvr)
 - Email - hello@vrtigo.io
 - [Bug reports](https://github.com/vrtigo/vrtigo-webvr/issues)
@@ -23,12 +22,16 @@ After installing through npm, you will need to incorporate the following line in
 
 ```import {addUserID,``` addAppID, addEvent, setPoseFrequency, setRenderFrequency, setBatteryFrequency} from 'vrtigo-analytics'```
 
-Use ```addUserID()``` and ```addAppID()``` to add the needed information to view the data.
-Use ```addEvent(event)``` to add an event to be tracked.
+Use `addUserID()` and `addAppID()` to add the needed information to view the data.
+Use `addEvent(event)` to add an event to be tracked.
 
+<<<<<<< HEAD
 Use ```setPoseFrequency, setRenderFrequency, setBatteryFrequency``` to set the frequencies for collecting data. These are defaulted to 200, 1000, and 1000 respectively.
 
 In your Index.html file include an <a-entity> called vrtigo with nothing else attached. This will allow the FPS to be calculated.
+=======
+In your Index.html file include an `<a-entity>` called vrtigo with nothing else attached. This will allow the FPS to be calculated.
+>>>>>>> 19724aac678c331972e14722065f60cb5dc2488b
 
 For example:
 
@@ -40,4 +43,4 @@ For example:
 ```
 
 ##How was this created?
-The VRTIGO analytics plugin was created mostly using WebVR and WebGL calls. The only A-Frame specific data is frames per second. In the near future we will also be creating a generic WebVR version of this plugin for those of you not using A-frame.
+The Vrtigo analytics plugin was created mostly using WebVR and WebGL calls. The only A-Frame specific data is frames per second. In the near future we will also be creating a generic WebVR version of this plugin for those of you not using A-Frame.
