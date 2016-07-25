@@ -9,19 +9,24 @@
 - Battery Data (charging, levels, time left)
 
 ##Help and Support
-- [Documentation] (https://github.com/vrtigo/vrtigo-webvr)
+- [Documentation](https://github.com/vrtigo/vrtigo-webvr)
 - Email - hello@vrtigo.io
-- [Bug reports] (https://github.com/vrtigo/vrtigo-webvr/issues)
-- Express: 140 characters or less [@vrtigoio] (https://twitter.com/vrtigoio) on twitter
+- [Bug reports](https://github.com/vrtigo/vrtigo-webvr/issues)
+- Express: 140 characters or less [@vrtigoio](https://twitter.com/vrtigoio) on twitter
 
 
 ##How to run and use
 
 Visit [vrtigo.io](https://vrtigo.io) to create an account to view your dashboard.
 
+After installing through npm, you will need to incorporate the following line into the "main"(from your package.json) of your file.
+
+```import {addUserID,``` addAppID, addEvent, setPoseFrequency, setRenderFrequency, setBatteryFrequency} from 'vrtigo-analytics'```
 
 Use ```addUserID()``` and ```addAppID()``` to add the needed information to view the data.
 Use ```addEvent(event)``` to add an event to be tracked.
+
+Use ```setPoseFrequency, setRenderFrequency, setBatteryFrequency``` to set the frequencies for collecting data. These are defaulted to 200, 1000, and 1000 respectively.
 
 In your Index.html file include an <a-entity> called vrtigo with nothing else attached. This will allow the FPS to be calculated.
 

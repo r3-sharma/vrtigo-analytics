@@ -1,5 +1,6 @@
 var gl = require('gl-matrix');
-var af = require('aframe');
+var aframe = require('../third-party/aframe.js');
+var webvr = require('webvr-polyfill');
 var config = require('./configurations');
 var init = require('./initialization');
 var vrDisplay = null;
@@ -22,18 +23,17 @@ function addEvent(event){
 function pushData(type, metric, value) {
   var load = init.generatePayload(type, metric, value);
   storeData.data.push(load);
-  console.log('storeData now:');
   console.log(storeData);
 };
 
 // sets a vrDisplay to be used for data
-if (navigator.getVRDisplays) {
-  navigator.getVRDisplays().then(function (displays){
+if (window.navigator.getVRDisplays) {
+  window.navigator.getVRDisplays().then(function (displays){
     if (displays.length > 0 && displays[0] != undefined ){
       vrDisplay = displays[0];
       console.log("vr device found");
     } else {
-      //console.log("WebVR supported but no VRDisplays found.");
+      console.log("WebVR supported but no VRDisplays found.");
     }
   });
 }
@@ -65,7 +65,8 @@ function onAnimationFrame () {
 pushData("event", "event", "session_start");
 
 function battery_data () {
-  navigator.getBattery().then(function(battery){
+
+  window.navigator.getBattery().then(function(battery){
       battery.addEventListener('chargingchange', function(){
         pushData("hardware", 'charging =', battery.charging);
       });
@@ -87,7 +88,6 @@ function pose_data () {
     pushData("event", "DisplayName", vrDisplay.displayName);
     pushData("event", "Headset is on", vrDisplay.isPresenting);
     pushData("pose", "quaternion", matrx);
-    console.log(JSON.stringify(storeData))
   } else {
     //console.log("Unable to access data on your machine.")
   };

@@ -29,6 +29,8 @@ function setRenderFrequency (frequency) {
 };
 
 module.exports = {
+  user_id: user_id,
+  app_id: app_id,
   addAppID: addAppID,
   addUserID: addUserID,
   pose_frequency: pose_frequency,
