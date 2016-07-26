@@ -32,8 +32,8 @@ function generatePayload(type, metric, value){
   payload.ts = generateTs();
   payload.sts = generateSTS();
   payload.sid = sid;
-  payload.user_id = config.user_id;
-  payload.app_id = config.app_id;
+  payload.user_id = config.config.user_id;
+  payload.app_id = config.config.app_id;
   payload.device = "Galaxy s7"
   payload.tz = generateTz();
   return payload;

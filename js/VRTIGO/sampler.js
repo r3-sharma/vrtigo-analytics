@@ -51,10 +51,10 @@ function setSampler (bool) {
   } else {
     if (bool) {
       is_Sampling = true;
-      animate = setInterval(getData.onAnimationFrame, config.pose_frequency);
-      pose_d = setInterval(getData.pose_data, config.pose_frequency);
-      batt_d = setInterval(getData.battery_data, config.battery_frequency);
-      render_d = setInterval(render_data, config.render_frequency);
+      animate = setInterval(getData.onAnimationFrame, config.config.pose_frequency);
+      pose_d = setInterval(getData.pose_data, config.config.pose_frequency);
+      batt_d = setInterval(getData.battery_data, config.config.battery_frequency);
+      render_d = setInterval(render_data, config.config.render_frequency);
       send_d = setInterval(function() {
 //        console.log(getData);
 //        let copy = getData.storeData.slice();
@@ -74,7 +74,7 @@ function setSampler (bool) {
 
 };
 
-var samp = setSampler(true);
+//var samp = setSampler(true);
 
 module.exports = {
   setSampler: setSampler

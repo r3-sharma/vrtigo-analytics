@@ -12,7 +12,7 @@ This plugin will allow you to capture the following data:
 - Email - hello@vrtigo.io
 - [Bug reports](https://github.com/vrtigo/vrtigo-webvr/issues)
 - Express help: 140 characters or less [@vrtigoio](https://twitter.com/vrtigoio) on twitter
-- Example website:
+- [Example project](https://github.com/vrtigo/vrtigo-aframe-example)
 
 
 ##How to run and use

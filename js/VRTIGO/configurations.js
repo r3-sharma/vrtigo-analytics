@@ -1,41 +1,33 @@
-var user_id = "user@oculus.com";
-var app_id = "0c680a1e-8a32-46d5-ab22-087d6ea8d1cf";
-var pose_frequency = 200;
-var battery_frequency = 1000;
-var render_frequency = 1000;
+var config = {user_id: 0, app_id:"0c680a1e-8a32-46d5-ab22-087d6ea8d1cf", pose_frequency: 200, battery_frequency: 1000, render_frequency: 1000};
 
 
 //user inserts their user id
 function addUserId(userid){
-  user_id = userid;
+  config.user_id = userid;
 };
 
 //user passes their app id
 function setAppId(appid){
-  app_id = appid;
+  config.app_id = appid;
 };
 
 function setPoseFrequency(frequency) {
-  pose_frequency = frequency;
+  config.pose_frequency = frequency;
 };
 
 
 function setBatteryFrequency(frequency) {
-  battery_frequency = frequency;
+  config.battery_frequency = frequency;
 };
 
 function setRenderFrequency (frequency) {
-  render_frequency = frequency;
+  config.render_frequency = frequency;
 };
 
 module.exports = {
-  user_id: user_id,
-  app_id: app_id,
   setAppId: setAppId,
   addUserId: addUserId,
-  pose_frequency: pose_frequency,
-  render_frequency:render_frequency,
-  battery_frequency: battery_frequency,
+  config:config,
   setRenderFrequency: setRenderFrequency,
   setBatteryFrequency: setBatteryFrequency,
   setPoseFrequency: setPoseFrequency
