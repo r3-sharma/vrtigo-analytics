@@ -10,6 +10,7 @@ var render_d;
 var fpsStorage = [];
 var frameNumber = 0;
 var startTime = 0;
+var started = false;
 
 
 AFRAME.registerComponent('vrtigo',{
@@ -36,6 +37,10 @@ function render_data (pushData) {
 };
 
 function setSampler (bool) {
+  if (started == false) {
+    getData.pushData("event", "event", "session_start")
+    started = true
+  }
   if (is_Sampling) {
     if (bool) {
       return;

@@ -36,12 +36,18 @@ function generatePayload(type, metric, value){
   payload.app_id = config.config.app_id;
   payload.device = "Galaxy s7"
   payload.tz = generateTz();
+  if (value == "session_start") {
+    console.log("SESSION_STARTED")
+  };
   return payload;
   //console.log(payload)
 };
 
+
+
 module.exports = {
   generateTs: generateTs,
+  generateSTS: generateSTS,
   startTs: startTs,
   generatePayload: generatePayload
 

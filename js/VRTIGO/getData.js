@@ -53,7 +53,7 @@ function onAnimationFrame () {
     gl.mat4.fromRotationTranslation(matrx, orientation, position);
     //the matrix might need to be inverted since this describes camera orientation. something about local vs world orientation. not sure about that. (mat4.invert(matrx, matrx)) should work
   } else {
-    //console.log("No VR devices attached")
+    console.log("No VR devices attached")
     //gl.mat4.identity(viewMat);
   }
 }
@@ -62,7 +62,6 @@ function onAnimationFrame () {
 //    every: 10   // update every 10 frames
 //});
 
-pushData("event", "event", "session_start");
 
 function battery_data () {
 
@@ -89,7 +88,7 @@ function pose_data () {
     pushData("event", "Headset is on", vrDisplay.isPresenting);
     pushData("pose", "quaternion", matrx);
   } else {
-    //console.log("Unable to access data on your machine.")
+    console.log("Unable to access data on your machine.")
   };
 };
 
