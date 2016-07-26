@@ -1,7 +1,7 @@
 {
   "name": "vrtigo-analytics",
   "description": "Analytics plugin for WebVR and Javascript Scenes",
-  "version": "0.3.2",
+  "version": "0.5.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {

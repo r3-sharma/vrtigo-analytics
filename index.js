@@ -12,7 +12,7 @@ module.exports = {
   getData: getData,
   wglu: wglu,
   aframe: aframe,
-  addUserId: config.addUserId,
+  setUserId: config.addUserId,
   setAppId: config.setAppId,
   setPoseFrequency: config.setPoseFrequency,
   setBatteryFrequency: config.setBatteryFrequency,
