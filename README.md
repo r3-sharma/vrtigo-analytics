@@ -17,11 +17,11 @@ This plugin will allow you to capture the following data:
 
 ##How to run and use
 
-Visit [vrtigo.io](https://vrtigo.io) to create an account and view your dashboard.
+Visit [vrtigo.io](http://vrtigo.io) to create an account and view your dashboard.
 
 Install the package through npm:
 ```shell
-npm install -s vrtigo-analytics
+npm install --save vrtigo-analytics
 ```
 and add this line to the "main" file (defined in package.json):
 
@@ -32,9 +32,9 @@ import {setUserId, setAppId, addEvent, setPoseFrequency,
 
 The minimum installation requires setting `setUserId()` with a unique user identifier, and `setAppId()` with your `APP_ID`.  Use `addEvent(event)` to add an event to be tracked.
 
-Use `setPoseFrequency()`, `setRenderFrequency()`, and `setBatteryFrequency()` to set the frequencies for collecting data. These default to 200, 1000, and 1000 respectively.
+Use `setPoseFrequency()`, `setRenderFrequency()`, and `setBatteryFrequency()` to set the frequencies for collecting data. These default to 200, 1000, and 1000 milliseconds, respectively.
 
-In your `index.html` file include a `<a-entity>` tag called `vrtigo` with nothing else attached. This will allow the FPS to be calculated.
+In your `index.html` file include an `<a-entity>` tag called `vrtigo` with nothing else attached. This will allow the FPS to be calculated.
 
 For example:
 
@@ -45,7 +45,7 @@ For example:
 </a-scene>
 ```
 
-To start collecting data, call the ```setSampler()``` function with a value of true. To stop collecting data call ```setSampler(false)```.
+To start collecting data, call the `setSampler()` function with a value of `true`. To stop collecting data call `setSampler()` with a value of `false`.
 
 ##How was this created?
 The Vrtigo analytics plugin was created mostly using WebVR and WebGL calls. The only A-Frame specific data is frames per second. In the near future we will also be creating a generic WebVR version of this plugin for those of you not using A-Frame.
