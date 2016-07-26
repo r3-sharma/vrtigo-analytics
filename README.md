@@ -17,23 +17,28 @@ This plugin will allow you to capture the following data:
 
 ##How to run and use
 
-Visit [vrtigo.io](https://vrtigo.io) to create an account to view your dashboard.
+Visit [vrtigo.io](https://vrtigo.io) to create an account and view your dashboard.
 
-After installing through npm, you will need to incorporate the following line into the "main"(from your package.json) of your file.
+Install the package through npm:
+```shell
+npm install -s vrtigo-analytics
+```
+and add this line to the "main" file (defined in package.json):
 
-```import {addUserId, setAppId, addEvent, setPoseFrequency, setRenderFrequency, setBatteryFrequency, setSampler} from 'vrtigo-analytics'```
+```javascript
+import {setUserId, setAppId, addEvent, setPoseFrequency,
+        setRenderFrequency, setBatteryFrequency, setSampler} from 'vrtigo-analytics'
+```
 
-Use `addUserId()` and `setAppId()` to add the needed information to view the data.
-Use `addEvent(event)` to add an event to be tracked.
+The minimum installation requires setting `setUserId()` with a unique user identifier, and `setAppId()` with your `APP_ID`.  Use `addEvent(event)` to add an event to be tracked.
 
-Use ```setPoseFrequency, setRenderFrequency, setBatteryFrequency``` to set the frequencies for collecting data. These are defaulted to 200, 1000, and 1000 respectively.
+Use `setPoseFrequency()`, `setRenderFrequency()`, and `setBatteryFrequency()` to set the frequencies for collecting data. These default to 200, 1000, and 1000 respectively.
 
-In your Index.html file include an <a-entity> called vrtigo with nothing else attached. This will allow the FPS to be calculated.
-
+In your `index.html` file include a `<a-entity>` tag called `vrtigo` with nothing else attached. This will allow the FPS to be calculated.
 
 For example:
 
-```
+```html
 <a-scene>
   <a-videosphere src="#vid" rotation="0 180 0"></a-videosphere>
   <a-entity vrtigo></a-entity>
