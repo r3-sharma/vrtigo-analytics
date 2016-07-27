@@ -2,10 +2,10 @@
 
 This plugin will allow you to capture the following data:
 - Frames Per Second (fps)
-- Head pose (in Quaternion form)
+- Head pose (in quaternion form)
 - Session length
 - Session time stamp
-- Battery (charging, levels, time left)
+- Battery (charging events, current level, time remaining)
 
 ## Help and Support
 - [Documentation](http://developer.vrtigo.io/)
@@ -23,14 +23,13 @@ Install the package through npm:
 ```shell
 npm install --save vrtigo-analytics
 ```
-and add this line to the "main" file (defined in package.json):
+and add this line to your project:
 
 ```javascript
-import {setUserId, setAppId, addEvent, setPoseFrequency,
-        setRenderFrequency, setBatteryFrequency, setSampler} from 'vrtigo-analytics'
+var vrtigo = require('vrtigo-analytics');
 ```
 
-The minimum installation requires setting `setUserId()` with a unique user identifier, and `setAppId()` with your `APP_ID`.  Use `addEvent(event)` to add an event to be tracked.
+To configure Vrtigo, use `setUserId()` with a unique user identifier, and `setAppId()` with your `APP_ID`.  Use `sendEvent("event name")` to add an event to be tracked.
 
 Use `setPoseFrequency()`, `setRenderFrequency()`, and `setBatteryFrequency()` to set the frequencies for collecting data. These default to 200, 1000, and 1000 milliseconds, respectively.
 
@@ -45,7 +44,7 @@ For example:
 </a-scene>
 ```
 
-To start collecting data, call the `setSampler()` function with a value of `true`. To stop collecting data call `setSampler()` with a value of `false`.
+To start collecting data, call the `collect()` function with a value of `true`. To stop collecting data call `collect()` with a value of `false`.
 
 ##How was this created?
 The Vrtigo analytics plugin was created mostly using WebVR and WebGL calls. The only A-Frame specific data is frames per second. In the near future we will also be creating a generic WebVR version of this plugin for those of you not using A-Frame.

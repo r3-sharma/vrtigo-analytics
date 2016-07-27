@@ -15,7 +15,7 @@ var storeData = {data: []};
 //var parse = new UAParser();
 //var result = parse.getResult();
 
-function addEvent(event){
+function sendEvent(event){
   var payload = init.generatePayload("event", "event", event);
   storeData.data.push(payload);
 };
@@ -92,14 +92,12 @@ function pose_data () {
   };
 };
 
-//setInterval(overheat, 5000)
-
 
 module.exports = {
   pose_data: pose_data,
   battery_data: battery_data,
   onAnimationFrame: onAnimationFrame,
-  addEvent: addEvent,
+  sendEvent: sendEvent,
   storeData: storeData,
   pushData: pushData
 };

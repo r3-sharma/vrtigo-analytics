@@ -36,7 +36,7 @@ function render_data (pushData) {
   fpsStorage = [];
 };
 
-function setSampler (bool) {
+function collect (bool) {
   if (started == false) {
     getData.pushData("event", "event", "session_start")
     started = true
@@ -79,8 +79,6 @@ function setSampler (bool) {
 
 };
 
-//var samp = setSampler(true);
-
 module.exports = {
-  setSampler: setSampler
+  collect: collect
 };
