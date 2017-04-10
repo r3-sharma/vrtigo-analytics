@@ -1,50 +1,50 @@
-# Vrtigo A-Frame analytics package
+# Vrtigo Analytics for WebVR
 
-This plugin will allow you to capture the following data:
-- Frames Per Second (fps)
-- Head pose (in quaternion form)
-- Session length
-- Session time stamp
-- Battery (charging events, current level, time remaining)
+https://vrtigo.io
 
-## Help and Support
-- [Documentation](http://developer.vrtigo.io/)
-- Email - hello@vrtigo.io
-- [Bug reports](https://github.com/vrtigo/vrtigo-webvr/issues)
-- Express help: 140 characters or less [@vrtigoio](https://twitter.com/vrtigoio) on twitter
-- [Example project](https://github.com/vrtigo/vrtigo-webvr-example)
+### Installation
 
-
-##How to run and use
-
-Visit [vrtigo.io](http://vrtigo.io) to create an account and view your dashboard.
-
-Install the package through npm:
 ```shell
 npm install --save vrtigo-analytics
 ```
-and add this line to your project:
+
+### Setup 
 
 ```javascript
-var vrtigo = require('vrtigo-analytics');
+const vrtigo = import vrtigo from 'vrtigo-analytics';
+vrtigo.setAppId('<your app id');
+vrtigo.setUserId('<your user id>');
 ```
 
-To configure Vrtigo, use `setUserId()` with a unique user identifier, and `setAppId()` with your `APP_ID`.  Use `sendEvent("event name")` to add an event to be tracked.
+### Data Collection
+All head pose and analytics metrics tracking is controlled by the API
+functions in the table below.  The start, unpause, seekEnd, and
+bufferEnd functions all require an integer representing the relative
+play position in milliseconds (positionMillis). The likely value in
+the start function is 0.
 
-Use `setPoseFrequency()`, `setRenderFrequency()`, and `setBatteryFrequency()` to set the frequencies for collecting data. These default to 200, 1000, and 1000 milliseconds, respectively.
+The start function, called when a video initially starts playing,
+additionally requires a string indicating the video being viewed
+(videoId).
 
-In your `index.html` file include an `<a-entity>` tag called `vrtigo` with nothing else attached. This will allow the FPS to be calculated.
+It is important to instrument any event where the playback time
+changes in the video, such as buffering and seeking/scrubbing, so that
+the analytics are in sync with the viewer’s behavior.
 
-For example:
+### Data Submission
 
-```html
-<a-scene>
-  <a-videosphere src="#vid" rotation="0 180 0"></a-videosphere>
-  <a-entity vrtigo></a-entity>
-</a-scene>
-```
+You control when to submit data to Vrtigo. To submit data after
+collection has been stopped with the stop function, simply call the
+submit function. *Important: call submit after calling stop and before
+calling start again.*
 
-To start collecting data, call the `collect()` function with a value of `true`. To stop collecting data call `collect()` with a value of `false`.
-
-##How was this created?
-The Vrtigo analytics plugin was created mostly using WebVR and WebGL calls. The only A-Frame specific data is frames per second. In the near future we will also be creating a generic WebVR version of this plugin for those of you not using A-Frame.
+| Action          |  API call                               | 
+| Start           | vrtigo.start(videoId, positionMillis);  |
+| Stop            | vrtigo.stop();                          |
+| Pause           | vrtigo.pause()                          |
+| Unpause         | vrtigo.unpause(positionMillis);         |
+| Seek begin      | vrtigo.seekBegin();                     |
+| Seed end        | vrtigo.seekEnd(positionMillis);         |
+| Buffering begin | vrtigo.bufferBegin();                   |
+| Buffering end   | vrtigo.bufferEnd(positionMillis);       |
+| Submit data     | vrtigo.submit();                        |

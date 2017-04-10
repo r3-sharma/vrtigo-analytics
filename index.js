@@ -1,20 +1,16 @@
-var getData = require('./js/VRTIGO/getData.js');
-var wglu = require('./js/third-party/wglu-stats.js');
-var aframe = require('./js/third-party/aframe.js');
-var posting = require('./js/VRTIGO/posting.js');
-var sample = require('./js/VRTIGO/sampler.js');
-var init = require('./js/VRTIGO/initialization.js');
-var config = require('./js/VRTIGO/configurations.js');
+import vrtigo from './js/vrtigo/vrtigo';
+import {config} from './js/vrtigo/config';
 
-module.exports = {
-  collect: sample.collect,
-  getData: getData,
-  wglu: wglu,
-  aframe: aframe,
-  setUserId: config.addUserId,
-  setAppId: config.setAppId,
-  setPoseFrequency: config.setPoseFrequency,
-  setBatteryFrequency: config.setBatteryFrequency,
-  setRenderFrequency: config.setRenderFrequency,
-  sendEvent: getData.sendEvent
+export default {
+  start: vrtigo.start,
+  stop: vrtigo.stop,
+  seekBegin: vrtigo.seekBegin,
+  seekEnd: vrtigo.seekEnd,
+  pause: vrtigo.pause,
+  unpause: vrtigo.unpause,
+  bufferBegin: vrtigo.bufferBegin,
+  bufferEnd: vrtigo.bufferEnd,
+  submit: vrtigo.submit,
+  setUserId: config.setUserId,
+  setAppId: config.setAppId
 };

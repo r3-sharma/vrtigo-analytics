@@ -1,22 +1,18 @@
 {
   "name": "vrtigo-analytics",
-  "description": "Analytics plugin for WebVR scenes",
-  "version": "0.6.0",
+  "description": "Vrtigo Analytics package for ReactVR",
+  "version": "0.7.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "npm run serve & budo --host 0.0.0.0 --live --verbose --port 3000 --open",
-    "deploy": "ghpages",
-    "ghpages": "ghpages",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check": "./node_modules/babel-cli/bin/babel-node.js ./js/vrtigo/init"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "babel-core": "6.10.4",
     "babel-loader": "6.2.4",
     "babel-preset-es2015": "6.9.0",
-    "budo": "^7.0.0",
-    "ghpages": "0.0.3",
-    "moment": "2.14.1",
     "webpack": "1.13.1",
     "webpack-dev-server": "1.14.1"
   },
@@ -25,22 +21,18 @@
     "url": "git+https://github.com/vrtigo/webvr_package.git"
   },
   "keywords": [
-    "aframe",
-    "aframe-boilerplate",
+    "reactvr",
     "webvr",
-    "webvr-example",
-    "analytics"  
+    "analytics"
   ],
-  "author": "Eswar",
+  "author": "Vrtigo",
   "bugs": {
     "url": "https://github.com/vrtigo/webvr_package/issues"
   },
   "homepage": "https://github.com/vrtigo/webvr_package",
   "dependencies": {
-    "aframe": "0.2.0",
-    "gl-matrix": "2.3.2",
-    "jstz": "1.0.7",
-    "uuid": "2.0.2",
-    "webvr-polyfill": "0.9.15"
+    "axios": "^0.16.0",
+    "moment": "2.14.1",
+    "uuid": "2.0.2"
   }
 }
