@@ -14,5 +14,6 @@ export default {
   bufferEnd: vrtigo.bufferEnd,
   submit: vrtigo.submit,
   setUserId: config.setUserId,
-  setAppId: config.setAppId
+  setAppId: config.setAppId,
+  setCamera: config.setCamera
 };

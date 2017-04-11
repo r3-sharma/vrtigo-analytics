@@ -1,19 +1,13 @@
-import {config} from './config';
-import util from './util';
+import { config } from './config';
+import { sessionData } from './sessionData';
+import { userData } from './userData';
+import { POSE_SAMPLING_FREQUENCY } from './constants';
 import checkThumbsUp from './thumbsup';
+import { VrHeadModel } from 'react-vr';
+import submit from './submit';
 
 let collecting = false;
-let firstTime = true; 
-
-const pose_data = function() {
-  if(vrDisplay){
-    pushData("event", "displayid", vrDisplay.displayId);
-    pushData("event", "DisplayName", vrDisplay.displayName);
-    pushData("event", "Headset is on", vrDisplay.isPresenting);
-  } else {
-    console.log("Unable to access data on your machine.");
-  };
-};
+let firstTime = true;
 
 const healthCheck = function(videoId, positionMillis) {
   return checkThumbsUp()
@@ -29,8 +23,20 @@ const healthCheck = function(videoId, positionMillis) {
 };
 
 const startCollecting = function(videoId, positionMillis) {
-  // send events
-  // turn on pose collection
+  // send event indicating tracking started
+  userData.add({'a': 10});
+  startPoseCollection(POSE_SAMPLING_FREQUENCY);
+};
+
+const startPoseCollection = function(frequency) {
+  setInterval(function() {
+    let poseSample = collectPose(frequency);
+    userData.add(poseSample);
+  });
+};
+
+const collectPose = function() {
+  return VrHeadModel.rotationOfHeadMatrix();
 };
 
 const start = function(videoId, positionMillis) {
@@ -45,6 +51,10 @@ const start = function(videoId, positionMillis) {
   } else {
     healthCheck(videoId, positionMillis);
   }
+};
+
+const stopCollecting = function() {
+
 };
 
 const stop = function() {
@@ -83,5 +93,6 @@ export default {
   seekBegin: seekBegin,
   seekEnd: seekEnd,
   bufferBegin: bufferBegin,
-  bufferEnd: bufferEnd
+  bufferEnd: bufferEnd,
+  submit: submit
 };

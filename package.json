@@ -32,7 +32,10 @@
   "homepage": "https://github.com/vrtigo/webvr_package",
   "dependencies": {
     "axios": "^0.16.0",
+    "json2csv": "^3.7.3",
     "moment": "2.14.1",
-    "uuid": "2.0.2"
+    "moment-timezone": "^0.5.13",
+    "papaparse": "^4.2.0",
+    "uuid": "^2.0.2"
   }
 }

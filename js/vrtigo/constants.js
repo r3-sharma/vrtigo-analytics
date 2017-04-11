@@ -2,7 +2,7 @@
 
 // *Not* exported
 const PROTOCOL = "http://";
-const SERVER_ADDR = "a.vrtigo.io";
+const SERVER_ADDR = "localhost:8080";
 const THUMBSUP_SERVER_ADDR = "localhost:8080";
 
 // Exported constants
