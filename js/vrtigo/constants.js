@@ -1,9 +1,9 @@
 // Define package constants here
 
 // *Not* exported
-const PROTOCOL = "https://";
+const PROTOCOL = "http://";
 const SERVER_ADDR = "a.vrtigo.io";
-const THUMBSUP_SERVER_ADDR = "a.vrtigo.io";
+const THUMBSUP_SERVER_ADDR = "localhost:8080";
 
 // Exported constants
 export const SDK_VERSION = "0.7.0";

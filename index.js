@@ -1,6 +1,8 @@
 import vrtigo from './js/vrtigo/vrtigo';
 import {config} from './js/vrtigo/config';
 
+console.log("Vrtigo Analytics loaded...");
+
 export default {
   start: vrtigo.start,
   stop: vrtigo.stop,

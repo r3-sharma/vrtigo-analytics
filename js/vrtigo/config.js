@@ -1,22 +1,32 @@
 const params = {
-  user_id: '',
-  app_id: '',
+  userId: '',
+  appId: '',
   thumbsUp: false
 };
 
-const setUserId = function(userid) {
-  params.user_id = userid;
+const setUserId = function(userId) {
+  params.userId = userId;
 };
 
-const setAppId = function(appid){
-  params.app_id = appid;
+const setAppId = function(appId) {
+  params.appId = appId;
 };
 
-const config_export =  { 
+const isAppIdSet = function() {
+  return params.appId !== '';
+};
+
+const isUserIdSet = function() {
+  return params.userId !== '' ;
+};
+
+const configExport =  { 
   setAppId: setAppId,
   setUserId: setUserId,
+  isUserIdSet: isUserIdSet,
+  isAppIdSet: isAppIdSet,
   params: params
 };
 
-// export singleton
-export let config = config_export; 
+// export singleton config object
+export let config = configExport; 
