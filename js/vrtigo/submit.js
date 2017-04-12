@@ -5,15 +5,16 @@ import { userData } from './userData';
 
 // TODO: switch to axios
 const submit = function() {
+  console.log(userData.get());
   const axiosConfig = {
     method: 'post',
     url: UPDATE_URL,
     timeout: POST_TIMEOUT,
     headers: {
       'X-Vrtigo-Sdk-Version': SDK_VERSION,
-      'Content/Type': 'text/csv'
+      'Content-Type': 'text/csv'
     },
-    data: JSON.stringify([])
+    data: toCSV(userData.get())
   };
 
   return axios(axiosConfig)
@@ -23,6 +24,7 @@ const submit = function() {
       return Promise.resolve(response);
     })
     .catch(function (error) {
+
       if (error.response) {
         // The request was made, but the server responded with a status code
         // that falls out of the range of 2xx

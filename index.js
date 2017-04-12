@@ -1,7 +1,6 @@
 import vrtigo from './js/vrtigo/vrtigo';
 import {config} from './js/vrtigo/config';
-
-console.log("Vrtigo Analytics loaded...");
+import submit from './js/vrtigo/submit';
 
 export default {
   start: vrtigo.start,
@@ -15,5 +14,5 @@ export default {
   submit: vrtigo.submit,
   setUserId: config.setUserId,
   setAppId: config.setAppId,
-  setCamera: config.setCamera
+  submit: submit
 };

@@ -4,38 +4,46 @@ import { userData } from './userData';
 import { POSE_SAMPLING_FREQUENCY } from './constants';
 import checkThumbsUp from './thumbsup';
 import { VrHeadModel } from 'react-vr';
-import submit from './submit';
+import { util } from './util';
 
-let collecting = false;
+// state for this module, consider moving to sessionData
+// or somewhere else
+
 let firstTime = true;
+let collecting = false;
+let poseInterval = null;
 
 const healthCheck = function(videoId, positionMillis) {
   return checkThumbsUp()
     .then(function(response) {
       firstTime = false;
-      config.thumbsUp = true;
+      sessionData.thumbsUp = true;
       start(videoId, positionMillis);
     })
     .catch(function(error) {
       firstTime = false;
-      config.thumbsUp = false;
+      sessionData.thumbsUp = false;
     });
 };
 
 const startCollecting = function(videoId, positionMillis) {
   // send event indicating tracking started
-  userData.add({'a': 10});
+  sessionData.currentCid = videoId;
+  sessionData.baselineCts = positionMillis;
+  sessionData.currentCidStartTs = util.getCurrentTs();
   startPoseCollection(POSE_SAMPLING_FREQUENCY);
 };
 
 const startPoseCollection = function(frequency) {
-  setInterval(function() {
-    let poseSample = collectPose(frequency);
-    userData.add(poseSample);
-  });
+  poseInterval = setInterval(function() {
+    let poseSample = collectPose();
+    userData.add('pose', 'euler_angle', poseSample);
+  }, frequency);
 };
 
 const collectPose = function() {
+  // TODO: This is a React VR SDK object, need to make sure it's
+  // available
   return VrHeadModel.rotationOfHeadMatrix();
 };
 
@@ -54,11 +62,17 @@ const start = function(videoId, positionMillis) {
 };
 
 const stopCollecting = function() {
-
+  if(poseInterval !== null) {
+    clearInterval(poseInterval);
+  }
 };
 
 const stop = function() {
   stopCollecting();
+  
+  sessionData.currentCid = null;
+  sessionData.baselineCts = null;
+  sessionData.currentCidStartTs = null;  
 };
 
 const pause = function() {
@@ -66,7 +80,7 @@ const pause = function() {
 };
 
 const unpause = function(positionMillis) {
-  start();
+  startCollecting(sessionData.currentCid, positionMillis);
 };
 
 const seekBegin = function() {
@@ -74,7 +88,7 @@ const seekBegin = function() {
 };
 
 const seekEnd = function(positionMillis) {
-  startCollecting();
+  startCollecting(sessionData.currentCid, positionMillis);
 };
 
 const bufferBegin = function() {
@@ -82,7 +96,7 @@ const bufferBegin = function() {
 };
 
 const bufferEnd = function(positionMillis) {
-  startCollecting();
+  startCollecting(sessionData.currentCid, positionMillis);
 };
 
 export default {
@@ -93,6 +107,5 @@ export default {
   seekBegin: seekBegin,
   seekEnd: seekEnd,
   bufferBegin: bufferBegin,
-  bufferEnd: bufferEnd,
-  submit: submit
+  bufferEnd: bufferEnd
 };

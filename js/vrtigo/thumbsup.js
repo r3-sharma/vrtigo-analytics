@@ -7,7 +7,7 @@ const checkThumbsUp = function() {
     method: 'get',
     url: THUMBSUP_URL,
     timeout: THUMBSUP_TIMEOUT,
-    headers: {'Vrtigo-Sdk-Version': SDK_VERSION },
+    headers: {'X-Vrtigo-Sdk-Version': SDK_VERSION },
     responseType: 'text'
   };
 

@@ -11,4 +11,5 @@ export const UPDATE_URL = PROTOCOL + SERVER_ADDR + "/update";
 export const THUMBSUP_URL = PROTOCOL + THUMBSUP_SERVER_ADDR + "/thumbsup";
 export const POST_TIMEOUT_MS = 10000;
 export const THUMBSUP_TIMEOUT_MS = 10000;
-export const POSE_SAMPLING_FREQUENCY = 0.2;
+//export const POSE_SAMPLING_FREQUENCY = 200;
+export const POSE_SAMPLING_FREQUENCY = 1000;

@@ -1,4 +1,4 @@
-# Vrtigo Analytics for WebVR
+# Vrtigo Analytics for React VR
 
 https://vrtigo.io
 

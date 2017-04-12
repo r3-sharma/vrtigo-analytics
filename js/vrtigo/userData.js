@@ -5,7 +5,7 @@ import {config} from './config';
 // generate the  for this session
 const userDataArray= [];
 
-const add = function(type, metric, value, cid) {
+const add = function(type, metric, value) {
   //string headerRow = "val,type,tz,ts,mt,sts,sid,cid,cts,uid,app,dev\n";
 
   //performance?
@@ -15,12 +15,13 @@ const add = function(type, metric, value, cid) {
   data.tz = sessionData.tz;
   data.ts  = util.getCurrentTs();
   data.mt = metric;
-  data.sts = util.getCurrentSts();
+  data.sts = util.getCurrentSts(sessionData.startTs);
   data.sid = sessionData.sid;
-  data.cid = cid || '';
-  data.cts = util.getCurrentCts();
-  data.uid = config.userId();
-  data.app = config.appId();
+  data.cid = sessionData.currentCid,
+  data.cts = util.getCurrentCts(sessionData.currentCidStartTs,
+                                sessionData.baselineCts);
+  data.uid = config.getUserId();
+  data.app = config.getAppId();
   data.dev = sessionData.device;
 
   userDataArray.push(data);

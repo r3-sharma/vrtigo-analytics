@@ -12,15 +12,14 @@ const getCurrentTs = function() {
 };
 
 const getCurrentSts = function(startTs) {
-  const currentTs = currentTs();
+  const currentTs = getCurrentTs();
   const sts = currentTs - startTs;
   return currentTs - startTs;
 };
 
-const getCurrentCts = function(startTs) {
-  const currentTs = currentTs();
-  const sts = currentTs - startTs;
-  return currentTs - startTs;
+const getCurrentCts = function(startTs, baselineTs) {
+  const currentTs = getCurrentTs();
+  return currentTs - startTs + baselineTs;
 };
 
 const getDevice = function() {
@@ -31,9 +30,19 @@ const getSessionId = function() {
   return uuid.v4();
 };
 
+const setCurrentSts = function() {
+
+};
+
+const setCurrentCts = function() {
+
+};
+
 export const util = {
   getCurrentTs: getCurrentTs,
-  setCurrentSts: getCurrentSts,
+  setCurrentSts: setCurrentSts,
+  getCurrentSts: getCurrentSts,
+  setCurrentCts: setCurrentCts,
   getCurrentCts: getCurrentCts,
   getTimezone: getTimezone,
   getSessionId: getSessionId,

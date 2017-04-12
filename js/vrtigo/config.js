@@ -1,8 +1,6 @@
 const params = {
   userId: '',
-  appId: '',
-  camera: null,
-  thumbsUp: false
+  appId: ''
 };
 
 const setUserId = function(userId) {
@@ -13,11 +11,6 @@ const setAppId = function(appId) {
   params.appId = appId;
 };
 
-const setCamera = function(camera) {
-  params.camera = camera;
-};
-
-
 const isAppIdSet = function() {
   return params.appId !== '';
 };
@@ -26,19 +19,22 @@ const isUserIdSet = function() {
   return params.userId !== '' ;
 };
 
-const isCameraSet = function() {
-  return params.camera !== null ;
+const getUserId = function() {
+  return params.userId;
 };
 
-const configExport =  { 
-  setAppId: setAppId,
-  setUserId: setUserId,
-  setCamera: setCamera,
-  isUserIdSet: isUserIdSet,
-  isAppIdSet: isAppIdSet,
-  isCameraSet: isCameraSet,
-  params: params
+const getAppId = function() {
+  return params.appId;
+};
+
+const configExport =  {
+  getAppId:    getAppId,
+  setAppId:    setAppId,
+  isAppIdSet:  isAppIdSet,  
+  getUserId:   getUserId,
+  setUserId:   setUserId,
+  isUserIdSet: isUserIdSet
 };
 
 // export singleton config object
-export let config = configExport; 
+export let config = configExport;

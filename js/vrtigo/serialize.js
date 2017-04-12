@@ -1,8 +1,11 @@
 import papaparse from 'papaparse';
 
 const toCSV = function(data) {
-  console.log(data);
-  return papaparse.unparse(data);
+  const papaConfig = {
+    quotes: true
+  };
+
+  return papaparse.unparse(data, papaConfig);
 };
 
 export default toCSV;
