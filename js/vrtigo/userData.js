@@ -10,7 +10,7 @@ const add = function(type, metric, value) {
 
   //performance?
   let data = {};
-  data.val = JSON.stringify(value);
+  data.val = value;
   data.type = type;
   data.tz = sessionData.tz;
   data.ts  = util.getCurrentTs();

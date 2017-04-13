@@ -1,11 +1,16 @@
 import {SDK_VERSION, UPDATE_URL, POST_TIMEOUT} from './constants';
 import axios from 'axios';
 import toCSV from './serialize';
+import { sessionData } from './serialize';
 import { userData } from './userData';
 
 // TODO: switch to axios
 const submit = function() {
-  console.log(userData.get());
+
+  if(!sessionData.thumbsUp) {
+    return Promise.reject('No thumbsup');
+  }
+
   const axiosConfig = {
     method: 'post',
     url: UPDATE_URL,

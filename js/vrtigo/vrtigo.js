@@ -35,6 +35,7 @@ const startCollecting = function(videoId, positionMillis) {
   sessionData.baselineCts = positionMillis;
   sessionData.currentCidStartTs = util.getCurrentTs();
   userData.add('event', 'event', 'tracking_enabled');
+  userData.add('event', 'event', 'content_baseline_timestamp_set');
   startPoseCollection(POSE_SAMPLING_FREQUENCY);
 };
 
