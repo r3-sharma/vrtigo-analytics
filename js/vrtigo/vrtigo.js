@@ -8,10 +8,13 @@ import { util } from './util';
 
 // state for this module, consider moving to sessionData
 // or somewhere else
-
 let firstTime = true;
-let collecting = false;
 let poseInterval = null;
+
+//initial events
+userData.add('event', 'event', 'session_start');
+userData.add('session_event', 'event', 'session_start');
+userData.add('event', 'platform', 'React VR');
 
 const healthCheck = function(videoId, positionMillis) {
   return checkThumbsUp()
@@ -31,6 +34,7 @@ const startCollecting = function(videoId, positionMillis) {
   sessionData.currentCid = videoId;
   sessionData.baselineCts = positionMillis;
   sessionData.currentCidStartTs = util.getCurrentTs();
+  userData.add('event', 'event', 'tracking_enabled');
   startPoseCollection(POSE_SAMPLING_FREQUENCY);
 };
 
@@ -55,6 +59,7 @@ const start = function(videoId, positionMillis) {
   }
   
   if(!firstTime) {
+    userData.add('content_event', 'event', 'content_start');
     startCollecting(videoId, positionMillis);
   } else {
     healthCheck(videoId, positionMillis);
@@ -62,40 +67,47 @@ const start = function(videoId, positionMillis) {
 };
 
 const stopCollecting = function() {
+  userData.add('event', 'event', 'tracking_disabled');
   if(poseInterval !== null) {
     clearInterval(poseInterval);
   }
 };
 
 const stop = function() {
+  userData.add('content_event', 'event', 'content_stop');
   stopCollecting();
-  
   sessionData.currentCid = null;
   sessionData.baselineCts = null;
   sessionData.currentCidStartTs = null;  
 };
 
 const pause = function() {
+  userData.add('content_event', 'event', 'content_pause');
   stopCollecting();
 };
 
 const unpause = function(positionMillis) {
+  userData.add('content_event', 'event', 'content_unpause');
   startCollecting(sessionData.currentCid, positionMillis);
 };
 
 const seekBegin = function() {
+  userData.add('content_event', 'event', 'content_seek_begin');
   stopCollecting();
 };
 
 const seekEnd = function(positionMillis) {
+  userData.add('content_event', 'event', 'content_seek_end');
   startCollecting(sessionData.currentCid, positionMillis);
 };
 
 const bufferBegin = function() {
+  userData.add('content_event', 'event', 'content_buffer_begin');
   stopCollecting();
 };
 
 const bufferEnd = function(positionMillis) {
+  userData.add('content_event', 'event', 'content_buffer_end');
   startCollecting(sessionData.currentCid, positionMillis);
 };
 
