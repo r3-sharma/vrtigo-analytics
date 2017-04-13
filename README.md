@@ -12,7 +12,7 @@ npm install --save vrtigo-analytics
 
 ```javascript
 const vrtigo = import vrtigo from 'vrtigo-analytics';
-vrtigo.setAppId('<your app id'>);
+vrtigo.setAppId('<your app id>');
 vrtigo.setUserId('<your user id>');
 ```
 
