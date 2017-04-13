@@ -47,7 +47,7 @@ const startPoseCollection = function(frequency) {
 };
 
 const collectPose = function() {
-  // TODO: This is a React VR SDK object, need to make sure it's
+  // TODO: This is a React VR SDK function, need to make sure it's
   // available
   return VrHeadModel.rotationOfHeadMatrix();
 };

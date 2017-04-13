@@ -1,10 +1,9 @@
 import {SDK_VERSION, UPDATE_URL, POST_TIMEOUT} from './constants';
 import axios from 'axios';
 import toCSV from './serialize';
-import { sessionData } from './serialize';
+import { sessionData } from './sessionData';
 import { userData } from './userData';
 
-// TODO: switch to axios
 const submit = function() {
 
   if(!sessionData.thumbsUp) {
