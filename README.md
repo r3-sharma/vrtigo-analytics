@@ -12,20 +12,19 @@ npm install --save vrtigo-analytics
 
 ```javascript
 const vrtigo = import vrtigo from 'vrtigo-analytics';
-vrtigo.setAppId('<your app id');
+vrtigo.setAppId('<your app id'>);
 vrtigo.setUserId('<your user id>');
 ```
 
 ### Data Collection
 All head pose and analytics metrics tracking is controlled by the API
-functions in the table below.  The start, unpause, seekEnd, and
-bufferEnd functions all require an integer representing the relative
-play position in milliseconds (positionMillis). The likely value in
-the start function is 0.
+functions in the table below.  The `start`, `unpause`, `seekEnd`, and
+`bufferEnd` functions all require an integer representing the relative
+play position in milliseconds (`positionMillis`). 
 
-The start function, called when a video initially starts playing,
+The `start` function, called when a video initially starts playing,
 additionally requires a string indicating the video being viewed
-(videoId).
+(`videoId`).
 
 It is important to instrument any event where the playback time
 changes in the video, such as buffering and seeking/scrubbing, so that
