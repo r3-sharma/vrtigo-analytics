@@ -42,8 +42,8 @@ calling start again.*
 
 <table>
 <tr>
-<td>Action</td>
-<td>API call</td>
+<td><b>Action</b></td>
+<td><b>API call</b></td>
 </tr>
 <tr>
 <td>Start</td>
