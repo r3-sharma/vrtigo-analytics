@@ -40,15 +40,45 @@ collection has been stopped with the stop function, simply call the
 submit function. *Important: call submit after calling stop and before
 calling start again.*
 
-
-| Action          |  API call                               | 
-|-----------------------------------------------------------|
-| Start           | vrtigo.start(videoId, positionMillis);  |
-| Stop            | vrtigo.stop();                          |
-| Pause           | vrtigo.pause()                          |
-| Unpause         | vrtigo.unpause(positionMillis);         |
-| Seek begin      | vrtigo.seekBegin();                     |
-| Seed end        | vrtigo.seekEnd(positionMillis);         |
-| Buffering begin | vrtigo.bufferBegin();                   |
-| Buffering end   | vrtigo.bufferEnd(positionMillis);       |
-| Submit data     | vrtigo.submit();                        |
+<table>
+<tr>
+<td>Action</td>
+<td>API call</td>
+</tr>
+<tr>
+<td>Start</td>
+<td>vrtigo.start(videoId, positionMillis);</td>
+</tr>
+<tr>
+<td>Stop</td>
+<td>vrtigo.stop()</td>
+</tr>
+<tr>
+<td>Pause</td>
+<td>vrtigo.pause()</td>
+</tr>
+<tr>
+<td>Unpause</td>
+<td>vrtigo.unpause(positionMillis)</td>
+</tr>
+<tr>
+<td>Seek begin</td>
+<td>vrtigo.seekBegin()</td>
+</tr>
+<tr>
+<td>Seek end</td>
+<td>vrtigo.seekEnd(positionMillis)</td>
+</tr>
+<tr>
+<td>Buffering begin</td>
+<td>vrtigo.bufferBegin()</td>
+</tr>
+<tr>
+<td>Buffering end</td>
+<td>vrtigo.bufferEnd(positionMillis)</td>
+</tr>
+<tr>
+<td>Submit data</td>
+<td>vrtigo.submit()</td>
+</tr>
+</table>
