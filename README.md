@@ -19,11 +19,19 @@ vrtigo.setUserId('<your user id>');
 Please contact <support@vrtigo.io> to obtain an app id for your React VR
 application.
 
+### Introduction
+
+Vrtigo collects and processes metrics in VR-enabled applications. The
+`vrtigo-reactvr` package allows developers to integrate Vrtigo into
+their React VR applications, specifically applications that display
+360 video environments. 
+
 ### Data Collection
-All head pose and analytics metrics tracking is controlled by the API
+
+All data collection and submission are controlled by the Vrtigo API
 functions in the table below.  The `start`, `unpause`, `seekEnd`, and
 `bufferEnd` functions all require an integer representing the relative
-play position in milliseconds (`positionMillis`). 
+play position of the video in milliseconds (`positionMillis`). 
 
 The `start` function, called when a video initially starts playing,
 additionally requires a string indicating the video being viewed
@@ -38,7 +46,8 @@ the analytics are in sync with the viewer’s behavior.
 You control when to submit data to Vrtigo. To submit data after
 collection has been stopped with the stop function, simply call the
 submit function. *Important: call submit after calling stop and before
-calling start again.*
+calling start again.* The submit function returns a Promise object, so
+be sure to `catch` any potential errors when calling it.
 
 <table>
 <tr>
