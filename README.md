@@ -7,16 +7,14 @@ https://vrtigo.io
 ```shell
 npm install --save vrtigo-reactvr
 ```
-
 ### Setup 
 
 ```javascript
 const vrtigo = import vrtigo from 'vrtigo-reactvr';
-vrtigo.setAppId('<your app id>');
-vrtigo.setUserId('<your user id>');
+vrtigo.setAppId('<Your App Id>');
+vrtigo.setUserId('<Your User Id>');
 ```
-
-Please contact <support@vrtigo.io> to obtain an app id for your React VR
+Please contact <support@vrtigo.io> to obtain an App Id for your React VR
 application.
 
 ### Introduction
@@ -43,11 +41,11 @@ the analytics are in sync with the viewer’s behavior.
 
 ### Data Submission
 
-You control when to submit data to Vrtigo. To submit data after
-collection has been stopped with the stop function, simply call the
-submit function. *Important: call submit after calling stop and before
-calling start again.* The `submit` function returns a Promise object, so
-be sure to `catch` any potential errors when calling it.
+You control when to send data to Vrtigo. To send data after video
+playback ends, simply call the `submit` function after calling the
+`stop` function. *Important: call submit after calling stop and before
+calling start again.* The `submit` function returns a Promise object,
+so be sure to `catch` any potential errors when calling it.
 
 <table>
 <tr>
@@ -56,38 +54,38 @@ be sure to `catch` any potential errors when calling it.
 </tr>
 <tr>
 <td>Start</td>
-<td>vrtigo.start(videoId, positionMillis);</td>
+<td>`vrtigo.start(videoId, positionMillis);`</td>
 </tr>
 <tr>
 <td>Stop</td>
-<td>vrtigo.stop()</td>
+<td>`vrtigo.stop()`</td>
 </tr>
 <tr>
 <td>Pause</td>
-<td>vrtigo.pause()</td>
+<td>`vrtigo.pause()`</td>
 </tr>
 <tr>
 <td>Unpause</td>
-<td>vrtigo.unpause(positionMillis)</td>
+<td>`vrtigo.unpause(positionMillis)`</td>
 </tr>
 <tr>
 <td>Seek begin</td>
-<td>vrtigo.seekBegin()</td>
+<td>`vrtigo.seekBegin()`</td>
 </tr>
 <tr>
 <td>Seek end</td>
-<td>vrtigo.seekEnd(positionMillis)</td>
+<td>`vrtigo.seekEnd(positionMillis)`</td>
 </tr>
 <tr>
 <td>Buffering begin</td>
-<td>vrtigo.bufferBegin()</td>
+<td>`vrtigo.bufferBegin()`</td>
 </tr>
 <tr>
 <td>Buffering end</td>
-<td>vrtigo.bufferEnd(positionMillis)</td>
+<td>`vrtigo.bufferEnd(positionMillis)`</td>
 </tr>
 <tr>
 <td>Submit data</td>
-<td>vrtigo.submit()</td>
+<td>`vrtigo.submit()`</td>
 </tr>
 </table>
