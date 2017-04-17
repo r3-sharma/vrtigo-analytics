@@ -5,16 +5,19 @@ https://vrtigo.io
 ### Installation
 
 ```shell
-npm install --save vrtigo-analytics
+npm install --save vrtigo-reactvr
 ```
 
 ### Setup 
 
 ```javascript
-const vrtigo = import vrtigo from 'vrtigo-analytics';
+const vrtigo = import vrtigo from 'vrtigo-reactvr';
 vrtigo.setAppId('<your app id>');
 vrtigo.setUserId('<your user id>');
 ```
+
+Please contact Vrtigo to obtain an app id for your React VR
+application.
 
 ### Data Collection
 All head pose and analytics metrics tracking is controlled by the API

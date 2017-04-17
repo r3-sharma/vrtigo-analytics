@@ -1,12 +1,11 @@
 {
-  "name": "vrtigo-analytics",
+  "name": "vrtigo-reactvr",
   "description": "Vrtigo Analytics package for ReactVR",
   "version": "0.7.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "check": "./node_modules/babel-cli/bin/babel-node.js ./js/vrtigo/init"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -18,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vrtigo/webvr_package.git"
+    "url": "git+https://github.com/vrtigo/vrtigo-reactvr.git"
   },
   "keywords": [
     "reactvr",
@@ -27,9 +26,9 @@
   ],
   "author": "Vrtigo",
   "bugs": {
-    "url": "https://github.com/vrtigo/webvr_package/issues"
+    "url": "https://github.com/vrtigo/vrtigo-reactvr/issues"
   },
-  "homepage": "https://github.com/vrtigo/webvr_package",
+  "homepage": "https://github.com/vrtigo/vrtigo-reactvr",
   "dependencies": {
     "axios": "^0.16.0",
     "json2csv": "^3.7.3",
