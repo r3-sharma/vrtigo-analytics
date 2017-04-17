@@ -40,7 +40,9 @@ collection has been stopped with the stop function, simply call the
 submit function. *Important: call submit after calling stop and before
 calling start again.*
 
+
 | Action          |  API call                               | 
+|-----------------------------------------------------------|
 | Start           | vrtigo.start(videoId, positionMillis);  |
 | Stop            | vrtigo.stop();                          |
 | Pause           | vrtigo.pause()                          |
