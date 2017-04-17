@@ -13,3 +13,8 @@ export const POST_TIMEOUT_MS = 10000;
 export const THUMBSUP_TIMEOUT_MS = 10000;
 //export const POSE_SAMPLING_FREQUENCY = 200;
 export const POSE_SAMPLING_FREQUENCY = 1000;
+
+export const KAFKA_EVENT_TOPIC_NAME = "event_js";
+export const KAFKA_POSE_TOPIC_NAME = "pose_js";
+export const KAFKA_SESSION_EVENT_TOPIC_NAME = "session_event_js";
+export const KAFKA_CONTENT_EVENT_TOPIC_NAME = "content_event_js";

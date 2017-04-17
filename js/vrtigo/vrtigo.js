@@ -1,7 +1,12 @@
 import { config } from './config';
 import { sessionData } from './sessionData';
 import { userData } from './userData';
-import { POSE_SAMPLING_FREQUENCY } from './constants';
+import { POSE_SAMPLING_FREQUENCY,
+         KAFKA_EVENT_TOPIC_NAME,
+         KAFKA_POSE_TOPIC_NAME,
+         KAFKA_SESSION_EVENT_TOPIC_NAME,
+         KAFKA_CONTENT_EVENT_TOPIC_NAME
+       } from './constants';
 import checkThumbsUp from './thumbsup';
 import { VrHeadModel } from 'react-vr';
 import { util } from './util';
@@ -12,9 +17,9 @@ let firstTime = true;
 let poseInterval = null;
 
 //initial events
-userData.add('event', 'event', 'session_start');
-userData.add('session_event', 'event', 'session_start');
-userData.add('event', 'platform', 'React VR');
+userData.add(KAFKA_EVENT_TOPIC_NAME, 'event', 'session_start');
+userData.add(KAFKA_SESSION_EVENT_TOPIC_NAME, 'event', 'session_start');
+userData.add(KAFKA_EVENT_TOPIC_NAME, 'platform', 'React VR');
 
 const healthCheck = function(videoId, positionMillis) {
   return checkThumbsUp()
@@ -34,15 +39,15 @@ const startCollecting = function(videoId, positionMillis) {
   sessionData.currentCid = videoId;
   sessionData.baselineCts = positionMillis;
   sessionData.currentCidStartTs = util.getCurrentTs();
-  userData.add('event', 'event', 'tracking_enabled');
-  userData.add('event', 'event', 'content_baseline_timestamp_set');
+  userData.add(KAFKA_EVENT_TOPIC_NAME, 'event', 'tracking_enabled');
+  userData.add(KAFKA_EVENT_TOPIC_NAME, 'event', 'content_baseline_timestamp_set');
   startPoseCollection(POSE_SAMPLING_FREQUENCY);
 };
 
 const startPoseCollection = function(frequency) {
   poseInterval = setInterval(function() {
     let poseSample = collectPose();
-    userData.add('pose', 'euler_angle', poseSample);
+    userData.add(KAFKA_POSE_TOPIC_NAME, 'euler_angle', poseSample);
   }, frequency);
 };
 
@@ -60,7 +65,7 @@ const start = function(videoId, positionMillis) {
   }
   
   if(!firstTime) {
-    userData.add('content_event', 'event', 'content_start');
+    userData.add(KAFKA_CONTENT_EVENT_TOPIC_NAME, 'event', 'content_start');
     startCollecting(videoId, positionMillis);
   } else {
     healthCheck(videoId, positionMillis);
@@ -68,14 +73,14 @@ const start = function(videoId, positionMillis) {
 };
 
 const stopCollecting = function() {
-  userData.add('event', 'event', 'tracking_disabled');
+  userData.add(KAFKA_EVENT_TOPIC_NAME, 'event', 'tracking_disabled');
   if(poseInterval !== null) {
     clearInterval(poseInterval);
   }
 };
 
 const stop = function() {
-  userData.add('content_event', 'event', 'content_stop');
+  userData.add(KAFKA_CONTENT_EVENT_TOPIC_NAME, 'event', 'content_stop');
   stopCollecting();
   sessionData.currentCid = null;
   sessionData.baselineCts = null;
@@ -83,32 +88,32 @@ const stop = function() {
 };
 
 const pause = function() {
-  userData.add('content_event', 'event', 'content_pause');
+  userData.add(KAFKA_CONTENT_EVENT_TOPIC_NAME, 'event', 'content_pause');
   stopCollecting();
 };
 
 const unpause = function(positionMillis) {
-  userData.add('content_event', 'event', 'content_unpause');
+  userData.add(KAFKA_CONTENT_EVENT_TOPIC_NAME, 'event', 'content_unpause');
   startCollecting(sessionData.currentCid, positionMillis);
 };
 
 const seekBegin = function() {
-  userData.add('content_event', 'event', 'content_seek_begin');
+  userData.add(KAFKA_CONTENT_EVENT_TOPIC_NAME, 'event', 'content_seek_begin');
   stopCollecting();
 };
 
 const seekEnd = function(positionMillis) {
-  userData.add('content_event', 'event', 'content_seek_end');
+  userData.add(KAFKA_CONTENT_EVENT_TOPIC_NAME, 'event', 'content_seek_end');
   startCollecting(sessionData.currentCid, positionMillis);
 };
 
 const bufferBegin = function() {
-  userData.add('content_event', 'event', 'content_buffer_begin');
+  userData.add(KAFKA_CONTENT_EVENT_TOPIC_NAME, 'event', 'content_buffer_begin');
   stopCollecting();
 };
 
 const bufferEnd = function(positionMillis) {
-  userData.add('content_event', 'event', 'content_buffer_end');
+  userData.add(KAFKA_CONTENT_EVENT_TOPIC_NAME, 'event', 'content_buffer_end');
   startCollecting(sessionData.currentCid, positionMillis);
 };
 
