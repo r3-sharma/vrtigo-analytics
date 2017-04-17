@@ -27,7 +27,7 @@ const getDevice = function() {
 };
 
 const getSessionId = function() {
-  return uuid.v4();
+  return uuid.v1();
 };
 
 const setCurrentSts = function() {
