@@ -16,7 +16,7 @@ vrtigo.setAppId('<your app id>');
 vrtigo.setUserId('<your user id>');
 ```
 
-Please contact Vrtigo to obtain an app id for your React VR
+Please contact <support@vrtigo.io> to obtain an app id for your React VR
 application.
 
 ### Data Collection
