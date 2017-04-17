@@ -1,7 +1,7 @@
 {
   "name": "vrtigo-reactvr",
   "description": "Vrtigo Analytics package for ReactVR",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
