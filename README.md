@@ -14,15 +14,15 @@ const vrtigo = import vrtigo from 'vrtigo-reactvr';
 vrtigo.setAppId('<Your App Id>');
 vrtigo.setUserId('<Your User Id>');
 ```
+
 Please contact <support@vrtigo.io> to obtain an App Id for your React VR
 application.
 
 ### Introduction
 
-Vrtigo collects and processes metrics in VR-enabled applications. The
+Vrtigo collects and processes metrics in 360 video applications. The
 `vrtigo-reactvr` package allows developers to integrate Vrtigo into
-their React VR applications, specifically applications that display
-360 video environments. 
+their React VR applications that make use of 360 content.
 
 ### Data Collection
 
@@ -58,34 +58,34 @@ so be sure to `catch` any potential errors when calling it.
 </tr>
 <tr>
 <td>Stop</td>
-<td>`vrtigo.stop()`</td>
+<td><code>vrtigo.stop()</code></td>
 </tr>
 <tr>
 <td>Pause</td>
-<td>`vrtigo.pause()`</td>
+<td><code>vrtigo.pause()</code></td>
 </tr>
 <tr>
 <td>Unpause</td>
-<td>`vrtigo.unpause(positionMillis)`</td>
+<td><code>vrtigo.unpause(positionMillis)</code></td>
 </tr>
 <tr>
 <td>Seek begin</td>
-<td>`vrtigo.seekBegin()`</td>
+<td><code>vrtigo.seekBegin()</code></td>
 </tr>
 <tr>
 <td>Seek end</td>
-<td>`vrtigo.seekEnd(positionMillis)`</td>
+<td><code>vrtigo.seekEnd(positionMillis)</code></td>
 </tr>
 <tr>
 <td>Buffering begin</td>
-<td>`vrtigo.bufferBegin()`</td>
+<td><code>vrtigo.bufferBegin()</code></td>
 </tr>
 <tr>
 <td>Buffering end</td>
-<td>`vrtigo.bufferEnd(positionMillis)`</td>
+<td><code>vrtigo.bufferEnd(positionMillis)</code></td>
 </tr>
 <tr>
 <td>Submit data</td>
-<td>`vrtigo.submit()`</td>
+<td><code>vrtigo.submit()</code></td>
 </tr>
 </table>
