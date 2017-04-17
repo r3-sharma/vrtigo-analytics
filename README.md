@@ -54,7 +54,7 @@ so be sure to `catch` any potential errors when calling it.
 </tr>
 <tr>
 <td>Start</td>
-<td>`vrtigo.start(videoId, positionMillis);`</td>
+<td><code>vrtigo.start(videoId, positionMillis);</code></td>
 </tr>
 <tr>
 <td>Stop</td>
