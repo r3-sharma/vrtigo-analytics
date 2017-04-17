@@ -45,8 +45,8 @@ the analytics are in sync with the viewer’s behavior.
 
 You control when to submit data to Vrtigo. To submit data after
 collection has been stopped with the stop function, simply call the
-submit function. *Important: call `submit` after calling `stop` and before
-calling `start` again.* The `submit` function returns a Promise object, so
+submit function. *Important: call submit after calling stop and before
+calling start again.* The `submit` function returns a Promise object, so
 be sure to `catch` any potential errors when calling it.
 
 <table>
