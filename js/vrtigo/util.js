@@ -1,4 +1,3 @@
-//import moment from 'moment';
 import momentTz from 'moment-timezone';
 import uuid from 'uuid';
 
@@ -30,19 +29,9 @@ const getSessionId = function() {
   return uuid.v1();
 };
 
-const setCurrentSts = function() {
-
-};
-
-const setCurrentCts = function() {
-
-};
-
 export const util = {
   getCurrentTs: getCurrentTs,
-  setCurrentSts: setCurrentSts,
   getCurrentSts: getCurrentSts,
-  setCurrentCts: setCurrentCts,
   getCurrentCts: getCurrentCts,
   getTimezone: getTimezone,
   getSessionId: getSessionId,

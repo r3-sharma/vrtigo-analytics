@@ -2,13 +2,10 @@ import {util} from './util';
 import {sessionData} from './sessionData';
 import {config} from './config';
 
-// generate the  for this session
 const userDataArray= [];
 
 const add = function(type, metric, value) {
   //string headerRow = "val,type,tz,ts,mt,sts,sid,cid,cts,uid,app,dev\n";
-
-  //performance?
   let data = {};
   data.val = value;
   data.type = type;

@@ -6,7 +6,7 @@ const toCSV = function(data) {
   };
 
   const formattedData = data.map(function(d) {
-    // need to send pose data angles as JSON.
+    // need to send pose data angles as JSON array.
     if(d.mt === 'euler_angle') {
       d.val = JSON.stringify(d.val);
     } 

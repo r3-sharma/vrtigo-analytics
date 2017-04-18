@@ -23,7 +23,6 @@ const submit = function() {
 
   return axios(axiosConfig)
     .then(function (response) {
-      //does this work?
       userData.clear();
       return Promise.resolve(response);
     })

@@ -36,5 +36,4 @@ const configExport =  {
   isUserIdSet: isUserIdSet
 };
 
-// export singleton config object
 export let config = configExport;
