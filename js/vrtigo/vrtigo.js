@@ -8,11 +8,21 @@ import { POSE_SAMPLING_FREQUENCY,
          CONTENT_EVENT_TYPE_NAME
        } from './constants';
 import checkThumbsUp from './thumbsup';
-import { VrHeadModel } from 'react-vr';
+
 import { util } from './util';
+import registerAframe from './aframe';
 
 let firstTime = true;
 let poseInterval = null;
+
+//register Aframe component
+registerAframe(function () {
+  var sceneEl = this.el.sceneEl;
+  // Get active camera
+  sceneEl.addEventListener('camera-set-active', function(evt) {
+    sessionData.camera = evt.detail.cameraEl;
+  });
+});
 
 //initial events
 userData.add(EVENT_TYPE_NAME, 'event', 'session_start');
@@ -49,9 +59,8 @@ const startPoseCollection = function(frequency) {
 };
 
 const collectPose = function() {
-  // TODO: This is a React VR SDK function, need to make sure it's
-  // available
-  return VrHeadModel.rotationOfHeadMatrix();
+  //console.log(sessionData.camera.getAttribute('rotation'));
+  return sessionData.camera.getAttribute('rotation');;
 };
 
 const start = function(videoId, positionMillis) {

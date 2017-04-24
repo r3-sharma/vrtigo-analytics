@@ -1,4 +1,4 @@
-import {SDK_VERSION, UPDATE_URL, POST_TIMEOUT} from './constants';
+import {SDK_VERSION, UPDATE_URL, POST_TIMEOUT_MS} from './constants';
 import axios from 'axios';
 import toCSV from './serialize';
 import { sessionData } from './sessionData';
@@ -13,7 +13,7 @@ const submit = function() {
   const axiosConfig = {
     method: 'post',
     url: UPDATE_URL,
-    timeout: POST_TIMEOUT,
+    timeout: POST_TIMEOUT_MS,
     headers: {
       'X-Vrtigo-Sdk-Version': SDK_VERSION,
       'Content-Type': 'text/csv'
