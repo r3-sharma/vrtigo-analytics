@@ -1,7 +1,7 @@
 {
-  "name": "vrtigo-reactvr",
-  "description": "Vrtigo Analytics package for ReactVR",
-  "version": "0.7.2",
+  "name": "vrtigo-analytics",
+  "description": "Vrtigo Analytics JS library",
+  "version": "0.7.3",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -17,18 +17,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vrtigo/vrtigo-reactvr.git"
+    "url": "git+https://github.com/vrtigo/vrtigo-analytics.git"
   },
   "keywords": [
-    "reactvr",
     "webvr",
     "analytics"
   ],
   "author": "Vrtigo",
   "bugs": {
-    "url": "https://github.com/vrtigo/vrtigo-reactvr/issues"
+    "url": "https://github.com/vrtigo/vrtigo-analytics/issues"
   },
-  "homepage": "https://github.com/vrtigo/vrtigo-reactvr",
+  "homepage": "https://github.com/vrtigo/vrtigo-analytics",
   "dependencies": {
     "axios": "^0.16.0",
     "json2csv": "^3.7.3",
