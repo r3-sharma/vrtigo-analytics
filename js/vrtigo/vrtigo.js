@@ -8,16 +8,16 @@ import { POSE_SAMPLING_FREQUENCY,
          CONTENT_EVENT_TYPE_NAME
        } from './constants';
 import checkThumbsUp from './thumbsup';
-import { VrHeadModel } from 'react-vr';
 import { util } from './util';
 
 let firstTime = true;
 let poseInterval = null;
+let poseFunction;
 
 //initial events
 userData.add(EVENT_TYPE_NAME, 'event', 'session_start');
 userData.add(SESSION_EVENT_TYPE_NAME, 'event', 'session_start');
-userData.add(EVENT_TYPE_NAME, 'platform', 'React VR');
+userData.add(EVENT_TYPE_NAME, 'platform', 'Web VR');
 
 const healthCheck = function(videoId, positionMillis) {
   return checkThumbsUp()
@@ -41,17 +41,15 @@ const startCollecting = function(videoId, positionMillis) {
   startPoseCollection(POSE_SAMPLING_FREQUENCY);
 };
 
-const startPoseCollection = function(frequency) {
-  poseInterval = setInterval(function() {
-    let poseSample = collectPose();
-    userData.add(POSE_TYPE_NAME, 'euler_angle', poseSample);
-  }, frequency);
+const setPoseFunction = function(func) {
+  poseFunction = func;
 };
 
-const collectPose = function() {
-  // TODO: This is a React VR SDK function, need to make sure it's
-  // available
-  return VrHeadModel.rotationOfHeadMatrix();
+const startPoseCollection = function(frequency) {
+  poseInterval = setInterval(function() {
+    let poseSample = poseFunction();
+    userData.add(POSE_TYPE_NAME, 'euler_angle', poseSample);
+  }, frequency);
 };
 
 const start = function(videoId, positionMillis) {
