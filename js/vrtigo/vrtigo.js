@@ -1,7 +1,7 @@
 import { config } from './config';
 import { sessionData } from './sessionData';
 import { userData } from './userData';
-import { POSE_SAMPLING_FREQUENCY,
+import { POSE_SAMPLING_FREQUENCY_MS,
          EVENT_TYPE_NAME,
          POSE_TYPE_NAME,
          SESSION_EVENT_TYPE_NAME,
@@ -38,7 +38,7 @@ const startCollecting = function(videoId, positionMillis) {
   sessionData.currentCidStartTs = util.getCurrentTs();
   userData.add(EVENT_TYPE_NAME, 'event', 'tracking_enabled');
   userData.add(EVENT_TYPE_NAME, 'event', 'content_baseline_timestamp_set');
-  startPoseCollection(POSE_SAMPLING_FREQUENCY);
+  startPoseCollection(POSE_SAMPLING_FREQUENCY_MS);
 };
 
 const setPoseFunction = function(func) {
