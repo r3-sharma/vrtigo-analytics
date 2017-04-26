@@ -1,12 +1,15 @@
 import { config } from './config';
 import { sessionData } from './sessionData';
 import { userData } from './userData';
-import { POSE_SAMPLING_FREQUENCY_MS,
-         EVENT_TYPE_NAME,
+
+import { POSE_SAMPLING_FREQUENCY_MS} from './constants';
+
+import { EVENT_TYPE_NAME,
          POSE_TYPE_NAME,
          SESSION_EVENT_TYPE_NAME,
          CONTENT_EVENT_TYPE_NAME
-       } from './constants';
+       } from './framework';
+
 import checkThumbsUp from './thumbsup';
 import { util } from './util';
 

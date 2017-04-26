@@ -2,6 +2,7 @@ import vrtigo from './js/vrtigo/vrtigo';
 import {config} from './js/vrtigo/config';
 import submit from './js/vrtigo/submit';
 import {sessionData} from './js/vrtigo/sessionData';
+import {setFrameworkVersion, setFrameworkName} from './js/vrtigo/framework';
 
 export default {
   start: vrtigo.start,
@@ -17,5 +18,7 @@ export default {
   setAppId: config.setAppId,
   submit: submit,
   setPoseFunction: vrtigo.setPoseFunction,
-  sessionData: sessionData
+  sessionData: sessionData,
+  setFrameworkVersion: setFrameworkVersion,
+  setFrameworkName: setFrameworkName
 };
