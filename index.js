@@ -1,6 +1,7 @@
 import vrtigo from './js/vrtigo/vrtigo';
 import {config} from './js/vrtigo/config';
 import submit from './js/vrtigo/submit';
+import {sessionData} from './js/vrtigo/sessionData';
 
 export default {
   start: vrtigo.start,
@@ -14,5 +15,7 @@ export default {
   submit: vrtigo.submit,
   setUserId: config.setUserId,
   setAppId: config.setAppId,
-  submit: submit
+  submit: submit,
+  setPoseFunction: vrtigo.setPoseFunction,
+  sessionData: sessionData
 };

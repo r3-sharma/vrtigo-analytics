@@ -24,8 +24,24 @@ const add = function(type, metric, value) {
   userDataArray.push(data);
 };
 
+const addUidAndAppId = function(data) {
+  return data.map(function(d) {
+    // if uid or app id are missing, add them...
+    if(d.uid === '') {
+      d.uid = config.getUserId();
+    }
+
+    if(d.app === '') {
+      d.app = config.getAppId();
+    }
+    
+    return d;
+  });
+};
+
 const get = function() {
-  return userDataArray;
+  const userDataUidAppId = addUidAndAppId(userDataArray);
+  return userDataUidAppId;
 };
 
 const clear = function() {

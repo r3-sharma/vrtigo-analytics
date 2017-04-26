@@ -120,5 +120,6 @@ export default {
   seekBegin: seekBegin,
   seekEnd: seekEnd,
   bufferBegin: bufferBegin,
-  bufferEnd: bufferEnd
+  bufferEnd: bufferEnd,
+  setPoseFunction: setPoseFunction
 };
