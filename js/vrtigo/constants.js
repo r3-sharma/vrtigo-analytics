@@ -6,7 +6,7 @@ const SERVER_ADDR = "a.vrtigo.io";
 const THUMBSUP_SERVER_ADDR = "a.vrtigo.io";
 
 // Exported constants
-export const SDK_VERSION = "0.7.4";
+export const SDK_VERSION = "0.7.5";
 export const UPDATE_URL = PROTOCOL + SERVER_ADDR + "/update";
 export const THUMBSUP_URL = PROTOCOL + THUMBSUP_SERVER_ADDR + "/thumbsup";
 export const POST_TIMEOUT_MS = 10000;
