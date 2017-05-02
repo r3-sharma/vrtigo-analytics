@@ -7,7 +7,7 @@ const sessionDataExport = {
   currentCid: null,
   currentCidStartTs: null,
   tz: util.getTimezone(),
-  sid: util.getSessionId(),
+  sid: util.generateSessionId(),
   device: util.getDevice(),
   thumbsUp: false
 };

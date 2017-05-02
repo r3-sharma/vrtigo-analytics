@@ -1,6 +1,6 @@
-import {util} from './util';
-import {sessionData} from './sessionData';
-import {config} from './config';
+import { util } from './util';
+import { sessionData } from './sessionData';
+import { config } from './config';
 
 const userDataArray= [];
 

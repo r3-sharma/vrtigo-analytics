@@ -28,12 +28,12 @@ const getAppId = function() {
 };
 
 const configExport =  {
-  getAppId:    getAppId,
-  setAppId:    setAppId,
-  isAppIdSet:  isAppIdSet,  
-  getUserId:   getUserId,
-  setUserId:   setUserId,
-  isUserIdSet: isUserIdSet
+  getAppId,
+  setAppId,
+  isAppIdSet,  
+  getUserId,
+  setUserId,
+  isUserIdSet,
 };
 
 export let config = configExport;

@@ -25,15 +25,15 @@ const getDevice = function() {
   return navigator.userAgent;
 };
 
-const getSessionId = function() {
+const generateSessionId = function() {
   return uuid.v1();
 };
 
 export const util = {
-  getCurrentTs: getCurrentTs,
-  getCurrentSts: getCurrentSts,
-  getCurrentCts: getCurrentCts,
-  getTimezone: getTimezone,
-  getSessionId: getSessionId,
-  getDevice : getDevice
+  getCurrentTs,
+  getCurrentSts,
+  getCurrentCts,
+  getTimezone,
+  generateSessionId,
+  getDevice,
 };
