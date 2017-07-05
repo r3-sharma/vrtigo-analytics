@@ -12,6 +12,7 @@ import { EVENT_TYPE_NAME,
 
 import checkThumbsUp from './thumbsup';
 import { util } from './util';
+import { interactive } from './interactive';
 
 let firstTime = true;
 let poseInterval = null;
@@ -126,3 +127,4 @@ export default {
   bufferEnd: bufferEnd,
   setPoseFunction: setPoseFunction
 };
+

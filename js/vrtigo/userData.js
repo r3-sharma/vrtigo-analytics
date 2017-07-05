@@ -19,6 +19,7 @@ const add = function(type, metric, value) {
                                 sessionData.baselineCts);
   data.uid = config.getUserId();
   data.app = config.getAppId();
+  data.iid = sessionData.iid;
   data.dev = sessionData.device;
 
   userDataArray.push(data);

@@ -9,6 +9,9 @@ const sessionDataExport = {
   tz: util.getTimezone(),
   sid: util.getSessionId(),
   device: util.getDevice(),
+  iid: '',
+  cid: '',
+  choiceId: '',
   thumbsUp: false
 };
 

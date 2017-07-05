@@ -3,6 +3,7 @@ import {config} from './js/vrtigo/config';
 import submit from './js/vrtigo/submit';
 import {sessionData} from './js/vrtigo/sessionData';
 import {setFrameworkVersion, setFrameworkName} from './js/vrtigo/framework';
+import {interactive} from './js/vrtigo/interactive';
 
 export default {
   start: vrtigo.start,
@@ -20,5 +21,10 @@ export default {
   setPoseFunction: vrtigo.setPoseFunction,
   sessionData: sessionData,
   setFrameworkVersion: setFrameworkVersion,
-  setFrameworkName: setFrameworkName
+  setFrameworkName: setFrameworkName,
+  startInteractiveScene: interactive.startInteractiveScene,
+  presentChoice: interactive.presentChoice,
+  userChoice: interactive.userChoice,
+  forceChoice: interactive.forceChoice,
+  endInteractiveScene: interactive.endInteractiveScene  
 };
