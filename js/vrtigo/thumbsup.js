@@ -1,5 +1,5 @@
-import {SDK_VERSION, THUMBSUP_URL, THUMBSUP_TIMEOUT_MS} from './constants';
 import axios from 'axios';
+import { SDK_VERSION, THUMBSUP_URL, THUMBSUP_TIMEOUT_MS } from './constants';
 
 const checkThumbsUp = function() {
 

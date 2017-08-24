@@ -4,11 +4,7 @@ import { userData } from './userData';
 
 import { POSE_SAMPLING_FREQUENCY_MS} from './constants';
 
-import { EVENT_TYPE_NAME,
-         POSE_TYPE_NAME,
-         SESSION_EVENT_TYPE_NAME,
-         CONTENT_EVENT_TYPE_NAME
-       } from './framework';
+import { EVENT_TYPE_NAME, POSE_TYPE_NAME, SESSION_EVENT_TYPE_NAME, CONTENT_EVENT_TYPE_NAME } from './framework';
 
 import checkThumbsUp from './thumbsup';
 import { util } from './util';
@@ -117,14 +113,14 @@ const bufferEnd = function(positionMillis) {
 };
 
 export default {
-  start: start,
-  stop: stop,
-  pause: pause,
-  unpause: unpause,
-  seekBegin: seekBegin,
-  seekEnd: seekEnd,
-  bufferBegin: bufferBegin,
-  bufferEnd: bufferEnd,
-  setPoseFunction: setPoseFunction
+  start,
+  stop,
+  pause,
+  unpause,
+  seekBegin,
+  seekEnd,
+  bufferBegin,
+  bufferEnd,
+  setPoseFunction,
 };
 

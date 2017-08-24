@@ -1,11 +1,15 @@
 import vrtigo from './js/vrtigo/vrtigo';
-import {config} from './js/vrtigo/config';
+import { config } from './js/vrtigo/config';
 import submit from './js/vrtigo/submit';
-import {sessionData} from './js/vrtigo/sessionData';
-import {setFrameworkVersion, setFrameworkName} from './js/vrtigo/framework';
-import {interactive} from './js/vrtigo/interactive';
+
+import { sessionData } from './js/vrtigo/sessionData';
+import { setFrameworkVersion, setFrameworkName } from './js/vrtigo/framework';
+import { interactive } from './js/vrtigo/interactive';
 
 export default {
+  sessionData,
+  setFrameworkVersion,
+  setFrameworkName,
   start: vrtigo.start,
   stop: vrtigo.stop,
   seekBegin: vrtigo.seekBegin,
@@ -14,7 +18,6 @@ export default {
   unpause: vrtigo.unpause,
   bufferBegin: vrtigo.bufferBegin,
   bufferEnd: vrtigo.bufferEnd,
-  submit: vrtigo.submit,
   setUserId: config.setUserId,
   setAppId: config.setAppId,
   submit: submit,

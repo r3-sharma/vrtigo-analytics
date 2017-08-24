@@ -1,7 +1,7 @@
-import {SDK_VERSION, UPDATE_URL, POST_TIMEOUT_MS} from './constants';
-import {SDK_FRAMEWORK_VERSION, SDK_FRAMEWORK_NAME} from './framework';
 import axios from 'axios';
 import toCSV from './serialize';
+import { SDK_VERSION, UPDATE_URL, POST_TIMEOUT_MS } from './constants';
+import { SDK_FRAMEWORK_VERSION, SDK_FRAMEWORK_NAME } from './framework';
 import { sessionData } from './sessionData';
 import { userData } from './userData';
 
