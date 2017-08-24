@@ -14,11 +14,6 @@ let firstTime = true;
 let poseInterval = null;
 let poseFunction;
 
-//initial events
-userData.add(EVENT_TYPE_NAME, 'event', 'session_start');
-userData.add(SESSION_EVENT_TYPE_NAME, 'event', 'session_start');
-userData.add(EVENT_TYPE_NAME, 'platform', 'Web VR');
-
 const healthCheck = function(videoId, positionMillis) {
   return checkThumbsUp()
     .then(function(response) {
