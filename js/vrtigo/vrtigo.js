@@ -33,9 +33,13 @@ const startCollecting = function(videoId, positionMillis) {
   sessionData.currentCid = videoId;
   sessionData.baselineCts = positionMillis;
   sessionData.currentCidStartTs = util.getCurrentTs();
-  userData.add(EVENT_TYPE_NAME, 'event', 'tracking_enabled');
   userData.add(EVENT_TYPE_NAME, 'event', 'content_baseline_timestamp_set');
-  if(!trackingPose) {
+
+  if(!trackingPose && !paused) {
+    // only enable tracking if we're not tracking pose and not paused
+    // if we are tracking pose already, we don't want to start another interval
+    // if we are paused
+    userData.add(EVENT_TYPE_NAME, 'event', 'tracking_enabled');
     startPoseCollection(POSE_SAMPLING_FREQUENCY_MS);
   }
 };
@@ -78,6 +82,7 @@ const stopCollecting = function() {
 const stop = function() {
   userData.add(CONTENT_EVENT_TYPE_NAME, 'event', 'content_stop');
   stopCollecting();
+
   sessionData.currentCid = null;
   sessionData.baselineCts = null;
   sessionData.currentCidStartTs = null;  
@@ -91,8 +96,8 @@ const pause = function() {
 
 const unpause = function(positionMillis) {
   paused = false;
-  userData.add(CONTENT_EVENT_TYPE_NAME, 'event', 'content_unpause');
   startCollecting(sessionData.currentCid, positionMillis);
+  userData.add(CONTENT_EVENT_TYPE_NAME, 'event', 'content_unpause');
 };
 
 const seekBegin = function() {
@@ -101,10 +106,9 @@ const seekBegin = function() {
 };
 
 const seekEnd = function(positionMillis) {
+  //still call startCollecting so that cts gets set properly
+  startCollecting(sessionData.currentCid, positionMillis);
   userData.add(CONTENT_EVENT_TYPE_NAME, 'event', 'content_seek_end');
-  if(!paused) {
-    startCollecting(sessionData.currentCid, positionMillis);
-  }
 };
 
 const bufferBegin = function() {
@@ -113,8 +117,8 @@ const bufferBegin = function() {
 };
 
 const bufferEnd = function(positionMillis) {
-  userData.add(CONTENT_EVENT_TYPE_NAME, 'event', 'content_buffer_end');
   startCollecting(sessionData.currentCid, positionMillis);
+  userData.add(CONTENT_EVENT_TYPE_NAME, 'event', 'content_buffer_end');
 };
 
 export default {
