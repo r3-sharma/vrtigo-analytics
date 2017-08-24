@@ -1,7 +1,7 @@
 {
   "name": "vrtigo-analytics",
   "description": "Vrtigo Analytics JS library",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "main": "index.js",
   "license": "MIT",
   "scripts": {

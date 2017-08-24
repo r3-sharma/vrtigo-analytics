@@ -13,6 +13,8 @@ import { interactive } from './interactive';
 let firstTime = true;
 let poseInterval = null;
 let poseFunction;
+let trackingPose = false;
+let paused = false;
 
 const healthCheck = function(videoId, positionMillis) {
   return checkThumbsUp()
@@ -33,7 +35,9 @@ const startCollecting = function(videoId, positionMillis) {
   sessionData.currentCidStartTs = util.getCurrentTs();
   userData.add(EVENT_TYPE_NAME, 'event', 'tracking_enabled');
   userData.add(EVENT_TYPE_NAME, 'event', 'content_baseline_timestamp_set');
-  startPoseCollection(POSE_SAMPLING_FREQUENCY_MS);
+  if(!trackingPose) {
+    startPoseCollection(POSE_SAMPLING_FREQUENCY_MS);
+  }
 };
 
 const setPoseFunction = function(func) {
@@ -41,6 +45,7 @@ const setPoseFunction = function(func) {
 };
 
 const startPoseCollection = function(frequency) {
+  trackingPose = true;
   poseInterval = setInterval(function() {
     let poseSample = poseFunction();
     userData.add(POSE_TYPE_NAME, 'euler_angle', poseSample);
@@ -64,6 +69,7 @@ const start = function(videoId, positionMillis) {
 
 const stopCollecting = function() {
   userData.add(EVENT_TYPE_NAME, 'event', 'tracking_disabled');
+  trackingPose = false;
   if(poseInterval !== null) {
     clearInterval(poseInterval);
   }
@@ -78,11 +84,13 @@ const stop = function() {
 };
 
 const pause = function() {
+  paused = true;
   userData.add(CONTENT_EVENT_TYPE_NAME, 'event', 'content_pause');
   stopCollecting();
 };
 
 const unpause = function(positionMillis) {
+  paused = false;
   userData.add(CONTENT_EVENT_TYPE_NAME, 'event', 'content_unpause');
   startCollecting(sessionData.currentCid, positionMillis);
 };
@@ -94,7 +102,9 @@ const seekBegin = function() {
 
 const seekEnd = function(positionMillis) {
   userData.add(CONTENT_EVENT_TYPE_NAME, 'event', 'content_seek_end');
-  startCollecting(sessionData.currentCid, positionMillis);
+  if(!paused) {
+    startCollecting(sessionData.currentCid, positionMillis);
+  }
 };
 
 const bufferBegin = function() {
