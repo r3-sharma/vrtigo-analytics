@@ -64,8 +64,8 @@ const start = function(videoId, positionMillis) {
   }
   
   if(!firstTime) {
-    userData.add(CONTENT_EVENT_TYPE_NAME, 'event', 'content_start');
     startCollecting(videoId, positionMillis);
+    userData.add(CONTENT_EVENT_TYPE_NAME, 'event', 'content_start');
   } else {
     healthCheck(videoId, positionMillis);
   }
