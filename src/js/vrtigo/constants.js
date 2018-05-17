@@ -6,7 +6,7 @@ const SERVER_ADDR = "a.vrtigo.io";
 const THUMBSUP_SERVER_ADDR = "a.vrtigo.io";
 
 // Exported constants
-import {version} from '../../package.json';
+import {version} from '../../../package.json';
 export const SDK_VERSION = version;
 
 export const UPDATE_URL = PROTOCOL + SERVER_ADDR + "/update";
