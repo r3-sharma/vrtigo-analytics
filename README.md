@@ -12,3 +12,10 @@ be pulled in as a dependency for you automatically.
 
 - React VR (https://github.com/vrtigo/vrtigo-reactvr)
 - A-Frame (https://github.com/vrtigo/vrtigo-aframe)
+
+
+
+## Generate SDK
+- npm install
+- npm run build
+- go to dist folder --> main.js
